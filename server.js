@@ -201,45 +201,77 @@ app.post('/api/items', (req, res) => {
   res.status(201).json({ item: newItem });
 });
 
-app.post('/api/upload', upload.array('files', 20), (req, res) => {
-  const senderName = req.body.senderName || 'Device';
-  const senderType = req.body.senderType || 'mobile';
+app.post('/api/upload', (req, res) => {
+  upload.array('files', 100)(req, res, (err) => {
+    if (err) {
+      console.error('[Upload Error]:', err);
+      if (err instanceof multer.MulterError) {
+        if (err.code === 'LIMIT_FILE_SIZE') {
+          return res.status(413).json({ error: 'File is too large for upload (max 10GB)' });
+        }
+        if (err.code === 'LIMIT_UNEXPECTED_FILE') {
+          return res.status(400).json({ error: 'Too many files selected (max 100 per batch)' });
+        }
+        return res.status(400).json({ error: `Upload error: ${err.message}` });
+      }
+      return res.status(500).json({ error: err.message || 'File upload failed on server' });
+    }
 
-  if (!req.files || req.files.length === 0) {
-    return res.status(400).json({ error: 'No files were uploaded' });
-  }
+    try {
+      const senderName = req.body.senderName || 'Device';
+      const senderType = req.body.senderType || 'mobile';
 
-  const newItems = req.files.map((file) => {
-    const isImage = file.mimetype.startsWith('image/');
-    const isVideo = file.mimetype.startsWith('video/');
-    const isAudio = file.mimetype.startsWith('audio/');
+      if (!req.files || req.files.length === 0) {
+        return res.status(400).json({ error: 'No files were uploaded. Please select a file.' });
+      }
 
-    const item = {
-      id: 'file_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7),
-      type: 'file',
-      fileType: isImage ? 'image' : isVideo ? 'video' : isAudio ? 'audio' : 'document',
-      originalName: file.originalname,
-      mimeType: file.mimetype,
-      size: file.size,
-      filename: file.filename,
-      downloadUrl: `/api/files/${file.filename}/download?name=${encodeURIComponent(file.originalname)}`,
-      viewUrl: `/api/files/${file.filename}/view`,
-      senderName,
-      senderType,
-      timestamp: new Date().toISOString(),
-    };
+      const newItems = req.files.map((file) => {
+        const mime = (file.mimetype || '').toLowerCase();
+        const ext = path.extname(file.originalname || '').toLowerCase();
 
-    sharedItems.unshift(item);
-    return item;
+        const isImage = mime.startsWith('image/') || /\.(jpg|jpeg|png|gif|webp|svg|bmp|ico|heic|heif|avif)$/i.test(ext);
+        const isVideo = mime.startsWith('video/') || /\.(mp4|mov|webm|mkv|avi|wmv|flv|m4v)$/i.test(ext);
+        const isAudio = mime.startsWith('audio/') || /\.(mp3|wav|ogg|m4a|aac|flac|wma)$/i.test(ext);
+
+        let cleanOriginalName = file.originalname || 'file';
+        try {
+          cleanOriginalName = Buffer.from(file.originalname, 'latin1').toString('utf8');
+        } catch {
+          cleanOriginalName = file.originalname || 'file';
+        }
+
+        const item = {
+          id: 'file_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7),
+          type: 'file',
+          fileType: isImage ? 'image' : isVideo ? 'video' : isAudio ? 'audio' : 'document',
+          originalName: cleanOriginalName,
+          mimeType: file.mimetype || 'application/octet-stream',
+          size: file.size,
+          filename: file.filename,
+          downloadUrl: `/api/files/${file.filename}/download?name=${encodeURIComponent(cleanOriginalName)}`,
+          viewUrl: `/api/files/${file.filename}/view`,
+          senderName,
+          senderType,
+          timestamp: new Date().toISOString(),
+        };
+
+        sharedItems.unshift(item);
+        return item;
+      });
+
+      if (sharedItems.length > 250) sharedItems = sharedItems.slice(0, 250);
+
+      newItems.forEach((item) => {
+        broadcast({ type: 'item_received', item });
+      });
+
+      console.log(`[Upload Success] ${newItems.length} file(s) uploaded by ${senderName} (${senderType})`);
+      res.status(201).json({ items: newItems });
+    } catch (handlerErr) {
+      console.error('[Upload Handler Crash]:', handlerErr);
+      res.status(500).json({ error: 'Server error processing uploaded files: ' + handlerErr.message });
+    }
   });
-
-  if (sharedItems.length > 250) sharedItems = sharedItems.slice(0, 250);
-
-  newItems.forEach((item) => {
-    broadcast({ type: 'item_received', item });
-  });
-
-  res.status(201).json({ items: newItems });
 });
 
 // View media with proper Range support for audio/video streaming & accurate MIME types

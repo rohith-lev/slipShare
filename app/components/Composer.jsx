@@ -48,14 +48,26 @@ export default function Composer({
     setIsDragOver(false);
 
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-      onUploadFiles(Array.from(e.dataTransfer.files));
+      const validFiles = Array.from(e.dataTransfer.files).filter((f) => f.name);
+      if (validFiles.length > 0) {
+        onUploadFiles(validFiles);
+      }
     }
   };
 
   const handleFileSelect = (e) => {
-    if (e.target.files && e.target.files.length > 0) {
-      onUploadFiles(Array.from(e.target.files));
-      e.target.value = '';
+    const input = e.target;
+    if (input.files && input.files.length > 0) {
+      const selectedFiles = Array.from(input.files);
+      onUploadFiles(selectedFiles);
+      // Asynchronously reset value so mobile browsers don't revoke file descriptors
+      setTimeout(() => {
+        try {
+          input.value = '';
+        } catch {
+          // ignore
+        }
+      }, 800);
     }
   };
 
@@ -206,7 +218,15 @@ export default function Composer({
           <div className="dropzone-desc">
             Instantly snap a picture or record video on your phone and stream it directly to your laptop.
           </div>
-          <button className="primary-btn" style={{ marginTop: '0.5rem' }}>
+          <button
+            type="button"
+            className="primary-btn"
+            style={{ marginTop: '0.5rem' }}
+            onClick={(e) => {
+              e.stopPropagation();
+              cameraInputRef.current?.click();
+            }}
+          >
             Open Camera
           </button>
         </div>

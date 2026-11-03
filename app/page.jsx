@@ -289,7 +289,16 @@ export default function SlipShareApp() {
         triggerToast(`${files.length} file${files.length > 1 ? 's' : ''} sent successfully`);
       } else {
         playFailSound(isMuted);
-        triggerToast('Upload failed, please retry');
+        let errorMsg = 'Upload failed, please retry';
+        try {
+          const res = JSON.parse(xhr.responseText);
+          if (res?.error) errorMsg = res.error;
+        } catch {}
+        if (xhr.status === 413) {
+          errorMsg = 'File too large for this network or tunnel';
+        }
+        console.error('Upload failed with status', xhr.status, xhr.responseText);
+        triggerToast(errorMsg);
       }
     };
 
@@ -297,7 +306,8 @@ export default function SlipShareApp() {
       setIsUploading(false);
       setUploadProgress(0);
       playFailSound(isMuted);
-      triggerToast('Upload failed, network error');
+      console.error('Upload failed with network error');
+      triggerToast('Upload failed: network connection error');
     };
 
     xhr.send(formData);
