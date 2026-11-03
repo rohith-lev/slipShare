@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Wifi, Smartphone, Laptop, Edit3, Check } from 'lucide-react';
+import { Smartphone, Laptop, Edit3, Check } from 'lucide-react';
 import { playTapSound } from '../utils/sound';
 
 export default function PeersBar({

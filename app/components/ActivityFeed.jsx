@@ -10,7 +10,6 @@ import {
   Trash2,
   ExternalLink,
   File,
-  Image as ImageIcon,
   Film,
   Music,
   Clock,
@@ -18,7 +17,7 @@ import {
   Smartphone,
   Eye,
 } from 'lucide-react';
-import { playTapSound, playBlipSound } from '../utils/sound';
+import { playTapSound } from '../utils/sound';
 
 function formatBytes(bytes) {
   if (!bytes || bytes === 0) return '0 B';

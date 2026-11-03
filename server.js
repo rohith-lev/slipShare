@@ -140,6 +140,7 @@ app.get('/api/info', async (req, res) => {
       qrDataUrl,
     });
   } catch (err) {
+    console.error('Failed to generate QR code:', err);
     res.status(500).json({ error: 'Failed to generate QR code' });
   }
 });
@@ -241,7 +242,7 @@ app.delete('/api/items/:id', (req, res) => {
     if (item.type === 'file' && item.filename) {
       const filePath = path.join(uploadsDir, item.filename);
       if (fs.existsSync(filePath)) {
-        try { fs.unlinkSync(filePath); } catch (e) { /* ignore */ }
+        try { fs.unlinkSync(filePath); } catch { /* ignore */ }
       }
     }
     sharedItems.splice(index, 1);
@@ -256,7 +257,7 @@ app.delete('/api/items', (req, res) => {
     if (item.type === 'file' && item.filename) {
       const filePath = path.join(uploadsDir, item.filename);
       if (fs.existsSync(filePath)) {
-        try { fs.unlinkSync(filePath); } catch (e) { /* ignore */ }
+        try { fs.unlinkSync(filePath); } catch { /* ignore */ }
       }
     }
   });

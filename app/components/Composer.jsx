@@ -8,10 +8,9 @@ import {
   Camera,
   Send,
   Sparkles,
-  Layers,
   ArrowUpRight,
 } from 'lucide-react';
-import { playTapSound, playBlipSound } from '../utils/sound';
+import { playTapSound, playOutSound } from '../utils/sound';
 
 export default function Composer({
   activeTab,
@@ -65,7 +64,7 @@ export default function Composer({
     if (!textContent.trim()) return;
     onSendText(textContent.trim());
     setTextContent('');
-    playBlipSound(isMuted);
+    playOutSound(isMuted);
     triggerToast('Text note sent to all devices');
   };
 
@@ -78,7 +77,7 @@ export default function Composer({
     }
     onSendLink(url);
     setLinkContent('');
-    playBlipSound(isMuted);
+    playOutSound(isMuted);
     triggerToast('Link broadcast to connected devices');
   };
 

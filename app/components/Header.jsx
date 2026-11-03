@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { QrCode, Volume2, VolumeX, Sun, Moon, Wifi } from 'lucide-react';
+import { QrCode, Volume2, VolumeX, Sun, Moon } from 'lucide-react';
 import { playTapSound } from '../utils/sound';
 
 export default function Header({
@@ -10,7 +10,6 @@ export default function Header({
   isMuted,
   setIsMuted,
   onOpenQr,
-  connectedCount = 1,
 }) {
   const toggleTheme = () => {
     playTapSound(isMuted);
@@ -24,9 +23,14 @@ export default function Header({
 
   return (
     <header className="app-header glass-panel">
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-        <a href="/" className="blip-wordmark">
-          slipshare
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        <a href="/" className="blip-wordmark" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.55rem' }}>
+          <img
+            src="/icons/ic_app_decorated.svg"
+            alt="slipshare logo"
+            style={{ width: '28px', height: '28px', borderRadius: '7px' }}
+          />
+          <span>slipshare</span>
           <span className="blip-wordmark-dot" />
         </a>
       </div>

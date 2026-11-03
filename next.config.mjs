@@ -10,6 +10,8 @@ const nextConfig = {
   turbopack: {
     root: __dirname,
   },
+  // Allow LAN access from local network IPs for HMR
+  allowedDevOrigins: ['192.168.*', '10.*', '172.16.*', 'localhost', '127.0.0.1'],
   // Allow all network devices and LAN connections
   async headers() {
     return [

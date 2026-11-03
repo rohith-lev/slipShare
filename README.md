@@ -7,8 +7,8 @@
 ## ✨ Features
 
 - **Blip Aesthetic & Palette**:
-  - Wordmark: `slipshare` with the animated Brand Sky Blue dot (`#13B5EA`)
-  - Accent Colors: Iris Violet (`#7C3AED`), Deep Ink (`#0B0B0F`), Clean Light & Obsidian Dark Mode
+  - Wordmark: `slipshare` with the official decorated logo icon and animated Brand Sky Blue dot (`#13B5EA`)
+  - Accent Colors: Electric Violet (`#6B0EFF`), Sky Blue (`#13B5EA`), Deep Ink (`#0B0B0F`), Clean Light & Obsidian Dark Mode
 - **Zero Cloud Intermediaries**:
   - Direct local transfer at maximum Wi-Fi / gigabit LAN speed
   - Unlimited file sizes (gigabytes of 4K video, raw assets, zips, folders)
@@ -20,13 +20,13 @@
   - Scan the pairing QR code from any phone on the Wi-Fi network to connect instantly
   - Direct URL access with one-click copy
 - **Instant Composer**:
-  - 📁 **Files & Media**: Drag-and-drop or file browser with progress tracking
+  - 📁 **Files & Media**: Drag-and-drop or file browser with live percentage progress tracking
   - 📸 **Camera**: One-tap camera capture and upload from mobile devices
   - 📝 **Quick Note**: Instant note / clipboard snippet broadcast (`Ctrl+Enter` shortcut)
   - 🔗 **Share Link**: Fast URL sharing with one-click open
-- **Real-time Synchronization**:
+- **Real-time Synchronization & Audio**:
   - Full WebSocket integration for immediate updates across all connected devices
-  - Gentle Web Audio API sound feedback (synthesized chime & tap tones)
+  - Authentic Blip audio feedback (`Chime` on receive, `Out` on send, `Resolve` on tap, `Fail` on error) with seamless Web Audio API synthesizer fallback
 - **Universal Local Proxy & LAN Access**:
   - Runs on `0.0.0.0:3000` with wildcard proxy (`/*`) and permissive CORS headers
   - Accessible from any smartphone, tablet, or PC on the same Wi-Fi network
@@ -36,7 +36,7 @@
 ## 🚀 Running Locally
 
 ```bash
-# Start slipshare (Next.js + WebSocket server on 0.0.0.0:3000)
+# Start slipshare (Next.js Turbopack + WebSocket server on 0.0.0.0:3000)
 npm run dev
 
 # Or with Node directly:

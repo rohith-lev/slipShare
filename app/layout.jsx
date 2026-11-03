@@ -3,10 +3,17 @@ import './globals.css';
 export const metadata = {
   title: 'slipshare • Direct Local File & Text Transfer',
   description: 'Instant local file, text and link sharing between mobile and laptop devices with zero cloud intermediaries.',
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no',
   icons: {
-    icon: '/favicon.ico',
+    icon: '/icons/ic_app_decorated.svg',
+    apple: '/icons/ic_app_decorated_128.png',
   },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({ children }) {

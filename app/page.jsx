@@ -7,7 +7,7 @@ import Composer from './components/Composer';
 import ActivityFeed from './components/ActivityFeed';
 import QrModal from './components/QrModal';
 import PreviewModal from './components/PreviewModal';
-import { playBlipSound, playTapSound } from './utils/sound';
+import { playBlipSound, playOutSound, playFailSound } from './utils/sound';
 
 export default function SlipShareApp() {
   const [networkInfo, setNetworkInfo] = useState(null);
@@ -196,9 +196,10 @@ export default function SlipShareApp() {
       setIsUploading(false);
       setUploadProgress(0);
       if (xhr.status >= 200 && xhr.status < 300) {
-        playBlipSound(isMuted);
+        playOutSound(isMuted);
         triggerToast(`${files.length} file${files.length > 1 ? 's' : ''} sent successfully`);
       } else {
+        playFailSound(isMuted);
         triggerToast('Upload failed, please retry');
       }
     };
@@ -206,6 +207,7 @@ export default function SlipShareApp() {
     xhr.onerror = () => {
       setIsUploading(false);
       setUploadProgress(0);
+      playFailSound(isMuted);
       triggerToast('Upload failed, network error');
     };
 
@@ -226,7 +228,8 @@ export default function SlipShareApp() {
           senderType: isMobile ? 'mobile' : 'desktop',
         }),
       });
-    } catch (e) {
+    } catch {
+      playFailSound(isMuted);
       triggerToast('Failed to send text');
     }
   };
@@ -246,7 +249,8 @@ export default function SlipShareApp() {
           senderType: isMobile ? 'mobile' : 'desktop',
         }),
       });
-    } catch (e) {
+    } catch {
+      playFailSound(isMuted);
       triggerToast('Failed to broadcast link');
     }
   };
@@ -278,7 +282,6 @@ export default function SlipShareApp() {
         isMuted={isMuted}
         setIsMuted={setIsMuted}
         onOpenQr={() => setShowQrModal(true)}
-        connectedCount={connectedDevices.length}
       />
 
       {/* Connected Peers Strip */}

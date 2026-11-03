@@ -91,7 +91,7 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                 children: "Shared Activity"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/ActivityFeed.jsx",
-                                lineNumber: 76,
+                                lineNumber: 75,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -99,13 +99,13 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                 children: items.length
                             }, void 0, false, {
                                 fileName: "[project]/app/components/ActivityFeed.jsx",
-                                lineNumber: 77,
+                                lineNumber: 76,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                        lineNumber: 75,
+                        lineNumber: 74,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -127,7 +127,7 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                         children: "All"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                        lineNumber: 82,
+                                        lineNumber: 81,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -139,7 +139,7 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                         children: "Files"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                        lineNumber: 91,
+                                        lineNumber: 90,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -151,7 +151,7 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                         children: "Notes"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                        lineNumber: 100,
+                                        lineNumber: 99,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -163,13 +163,13 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                         children: "Links"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                        lineNumber: 109,
+                                        lineNumber: 108,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/ActivityFeed.jsx",
-                                lineNumber: 81,
+                                lineNumber: 80,
                                 columnNumber: 11
                             }, this),
                             items.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -190,24 +190,24 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                     size: 14
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/ActivityFeed.jsx",
-                                    lineNumber: 133,
+                                    lineNumber: 132,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/components/ActivityFeed.jsx",
-                                lineNumber: 121,
+                                lineNumber: 120,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                        lineNumber: 80,
+                        lineNumber: 79,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/ActivityFeed.jsx",
-                lineNumber: 74,
+                lineNumber: 73,
                 columnNumber: 7
             }, this),
             filteredItems.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -219,12 +219,12 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                             size: 26
                         }, void 0, false, {
                             fileName: "[project]/app/components/ActivityFeed.jsx",
-                            lineNumber: 143,
+                            lineNumber: 142,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                        lineNumber: 142,
+                        lineNumber: 141,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -235,7 +235,7 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                         children: "No shared items yet"
                     }, void 0, false, {
                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                        lineNumber: 145,
+                        lineNumber: 144,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -246,13 +246,13 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                         children: "Drop files or paste text/links above to transfer them in real-time to your other devices."
                     }, void 0, false, {
                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                        lineNumber: 146,
+                        lineNumber: 145,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/ActivityFeed.jsx",
-                lineNumber: 141,
+                lineNumber: 140,
                 columnNumber: 9
             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "feed-list",
@@ -276,12 +276,12 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                             loading: "lazy"
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/ActivityFeed.jsx",
-                                            lineNumber: 167,
+                                            lineNumber: 166,
                                             columnNumber: 23
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                        lineNumber: 162,
+                                        lineNumber: 161,
                                         columnNumber: 21
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: `item-icon-box ${item.type} ${item.fileType || ''}`,
@@ -290,14 +290,14 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                                 size: 20
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                lineNumber: 171,
+                                                lineNumber: 170,
                                                 columnNumber: 48
                                             }, this),
                                             item.type === 'link' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$link$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Link$3e$__["Link"], {
                                                 size: 20
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                lineNumber: 172,
+                                                lineNumber: 171,
                                                 columnNumber: 48
                                             }, this),
                                             item.type === 'file' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -306,33 +306,33 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                                         size: 20
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                        lineNumber: 175,
+                                                        lineNumber: 174,
                                                         columnNumber: 39
                                                     }, this),
                                                     isAudio && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$eighth$2d$notes$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Music$3e$__["Music"], {
                                                         size: 20
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                        lineNumber: 176,
+                                                        lineNumber: 175,
                                                         columnNumber: 39
                                                     }, this),
                                                     !isVideo && !isAudio && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$file$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__File$3e$__["File"], {
                                                         size: 20
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                        lineNumber: 177,
+                                                        lineNumber: 176,
                                                         columnNumber: 52
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                lineNumber: 174,
+                                                lineNumber: 173,
                                                 columnNumber: 25
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                        lineNumber: 170,
+                                        lineNumber: 169,
                                         columnNumber: 21
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -345,7 +345,7 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                                         children: item.originalName
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                        lineNumber: 187,
+                                                        lineNumber: 186,
                                                         columnNumber: 25
                                                     }, this),
                                                     isVideo && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("video", {
@@ -360,7 +360,7 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                                         }
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                        lineNumber: 189,
+                                                        lineNumber: 188,
                                                         columnNumber: 27
                                                     }, this),
                                                     isAudio && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("audio", {
@@ -372,13 +372,13 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                                         }
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                        lineNumber: 202,
+                                                        lineNumber: 201,
                                                         columnNumber: 27
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                lineNumber: 186,
+                                                lineNumber: 185,
                                                 columnNumber: 23
                                             }, this),
                                             item.type === 'text' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -386,7 +386,7 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                                 children: item.content
                                             }, void 0, false, {
                                                 fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                lineNumber: 212,
+                                                lineNumber: 211,
                                                 columnNumber: 23
                                             }, this),
                                             item.type === 'link' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -408,13 +408,13 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                                         size: 13
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                        lineNumber: 231,
+                                                        lineNumber: 230,
                                                         columnNumber: 25
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                lineNumber: 216,
+                                                lineNumber: 215,
                                                 columnNumber: 23
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -424,14 +424,14 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                                         children: formatBytes(item.size)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                        lineNumber: 237,
+                                                        lineNumber: 236,
                                                         columnNumber: 48
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         children: "•"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                        lineNumber: 238,
+                                                        lineNumber: 237,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -445,52 +445,52 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                                                 size: 11
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                                lineNumber: 241,
+                                                                lineNumber: 240,
                                                                 columnNumber: 27
                                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$laptop$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Laptop$3e$__["Laptop"], {
                                                                 size: 11
                                                             }, void 0, false, {
                                                                 fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                                lineNumber: 243,
+                                                                lineNumber: 242,
                                                                 columnNumber: 27
                                                             }, this),
                                                             item.senderName
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                        lineNumber: 239,
+                                                        lineNumber: 238,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         children: "•"
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                        lineNumber: 247,
+                                                        lineNumber: 246,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         children: timeAgo(item.timestamp)
                                                     }, void 0, false, {
                                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                        lineNumber: 248,
+                                                        lineNumber: 247,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/components/ActivityFeed.jsx",
-                                                lineNumber: 236,
+                                                lineNumber: 235,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                        lineNumber: 184,
+                                        lineNumber: 183,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/ActivityFeed.jsx",
-                                lineNumber: 159,
+                                lineNumber: 158,
                                 columnNumber: 17
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -506,12 +506,12 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                             size: 16
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/ActivityFeed.jsx",
-                                            lineNumber: 264,
+                                            lineNumber: 263,
                                             columnNumber: 23
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                        lineNumber: 257,
+                                        lineNumber: 256,
                                         columnNumber: 21
                                     }, this),
                                     isImage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -522,12 +522,12 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                             size: 16
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/ActivityFeed.jsx",
-                                            lineNumber: 275,
+                                            lineNumber: 274,
                                             columnNumber: 23
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                        lineNumber: 270,
+                                        lineNumber: 269,
                                         columnNumber: 21
                                     }, this),
                                     (item.type === 'text' || item.type === 'link') && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -539,18 +539,18 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                             color: "var(--accent-success)"
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/ActivityFeed.jsx",
-                                            lineNumber: 287,
+                                            lineNumber: 286,
                                             columnNumber: 25
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$copy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Copy$3e$__["Copy"], {
                                             size: 16
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/ActivityFeed.jsx",
-                                            lineNumber: 289,
+                                            lineNumber: 288,
                                             columnNumber: 25
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                        lineNumber: 281,
+                                        lineNumber: 280,
                                         columnNumber: 21
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -565,36 +565,36 @@ function ActivityFeed({ items = [], onDeleteItem, onClearAll, onPreviewImage, is
                                             size: 16
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/ActivityFeed.jsx",
-                                            lineNumber: 304,
+                                            lineNumber: 303,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                                        lineNumber: 295,
+                                        lineNumber: 294,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/ActivityFeed.jsx",
-                                lineNumber: 254,
+                                lineNumber: 253,
                                 columnNumber: 17
                             }, this)
                         ]
                     }, item.id, true, {
                         fileName: "[project]/app/components/ActivityFeed.jsx",
-                        lineNumber: 158,
+                        lineNumber: 157,
                         columnNumber: 15
                     }, this);
                 })
             }, void 0, false, {
                 fileName: "[project]/app/components/ActivityFeed.jsx",
-                lineNumber: 151,
+                lineNumber: 150,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/components/ActivityFeed.jsx",
-        lineNumber: 72,
+        lineNumber: 71,
         columnNumber: 5
     }, this);
 }
@@ -656,7 +656,7 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
         if (!textContent.trim()) return;
         onSendText(textContent.trim());
         setTextContent('');
-        (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["playBlipSound"])(isMuted);
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["playOutSound"])(isMuted);
         triggerToast('Text note sent to all devices');
     };
     const handleLinkSubmit = (e)=>{
@@ -668,7 +668,7 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
         }
         onSendLink(url);
         setLinkContent('');
-        (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["playBlipSound"])(isMuted);
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["playOutSound"])(isMuted);
         triggerToast('Link broadcast to connected devices');
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -691,20 +691,20 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                                 size: 16
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 96,
+                                lineNumber: 95,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 children: "Files & Media"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 97,
+                                lineNumber: 96,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 89,
+                        lineNumber: 88,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -719,20 +719,20 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                                 size: 16
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 108,
+                                lineNumber: 107,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 children: "Camera"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 109,
+                                lineNumber: 108,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 100,
+                        lineNumber: 99,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -746,20 +746,20 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                                 size: 16
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 119,
+                                lineNumber: 118,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 children: "Quick Note"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 120,
+                                lineNumber: 119,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 112,
+                        lineNumber: 111,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -773,26 +773,26 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                                 size: 16
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 130,
+                                lineNumber: 129,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 children: "Share Link"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 131,
+                                lineNumber: 130,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 123,
+                        lineNumber: 122,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/Composer.jsx",
-                lineNumber: 88,
+                lineNumber: 87,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -805,7 +805,7 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                 }
             }, void 0, false, {
                 fileName: "[project]/app/components/Composer.jsx",
-                lineNumber: 136,
+                lineNumber: 135,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -819,7 +819,7 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                 }
             }, void 0, false, {
                 fileName: "[project]/app/components/Composer.jsx",
-                lineNumber: 143,
+                lineNumber: 142,
                 columnNumber: 7
             }, this),
             isUploading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -843,7 +843,7 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                                 children: "Transferring to peers..."
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 156,
+                                lineNumber: 155,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -858,13 +858,13 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 157,
+                                lineNumber: 156,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 155,
+                        lineNumber: 154,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -876,18 +876,18 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                             }
                         }, void 0, false, {
                             fileName: "[project]/app/components/Composer.jsx",
-                            lineNumber: 162,
+                            lineNumber: 161,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 161,
+                        lineNumber: 160,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/Composer.jsx",
-                lineNumber: 154,
+                lineNumber: 153,
                 columnNumber: 9
             }, this),
             activeTab === 'files' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -903,12 +903,12 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                             size: 32
                         }, void 0, false, {
                             fileName: "[project]/app/components/Composer.jsx",
-                            lineNumber: 177,
+                            lineNumber: 176,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 176,
+                        lineNumber: 175,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -916,7 +916,7 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                         children: "Drop files here or click to browse"
                     }, void 0, false, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 179,
+                        lineNumber: 178,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -924,7 +924,7 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                         children: "Direct peer transfer at maximum local Wi-Fi speed. Original quality, no compression, no cloud storage."
                     }, void 0, false, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 180,
+                        lineNumber: 179,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -935,26 +935,26 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                                 color: "var(--blip-blue)"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 184,
+                                lineNumber: 183,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 children: "Unlimited file size • All formats accepted"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 185,
+                                lineNumber: 184,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 183,
+                        lineNumber: 182,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/Composer.jsx",
-                lineNumber: 169,
+                lineNumber: 168,
                 columnNumber: 9
             }, this),
             activeTab === 'camera' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -974,12 +974,12 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                             size: 32
                         }, void 0, false, {
                             fileName: "[project]/app/components/Composer.jsx",
-                            lineNumber: 198,
+                            lineNumber: 197,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 197,
+                        lineNumber: 196,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -987,7 +987,7 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                         children: "Take Photo or Record Video"
                     }, void 0, false, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 200,
+                        lineNumber: 199,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -995,7 +995,7 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                         children: "Instantly snap a picture or record video on your phone and stream it directly to your laptop."
                     }, void 0, false, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 201,
+                        lineNumber: 200,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1006,13 +1006,13 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                         children: "Open Camera"
                     }, void 0, false, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 204,
+                        lineNumber: 203,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/Composer.jsx",
-                lineNumber: 192,
+                lineNumber: 191,
                 columnNumber: 9
             }, this),
             activeTab === 'text' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1030,7 +1030,7 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                         }
                     }, void 0, false, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 213,
+                        lineNumber: 212,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1056,14 +1056,14 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                                         children: "Ctrl + Enter"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Composer.jsx",
-                                        lineNumber: 226,
+                                        lineNumber: 225,
                                         columnNumber: 21
                                     }, this),
                                     " to broadcast"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 225,
+                                lineNumber: 224,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1078,32 +1078,32 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                                         size: 15
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Composer.jsx",
-                                        lineNumber: 234,
+                                        lineNumber: 233,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "Send Note"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Composer.jsx",
-                                        lineNumber: 235,
+                                        lineNumber: 234,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 228,
+                                lineNumber: 227,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 224,
+                        lineNumber: 223,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/Composer.jsx",
-                lineNumber: 212,
+                lineNumber: 211,
                 columnNumber: 9
             }, this),
             activeTab === 'link' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1124,7 +1124,7 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                                 onKeyDown: (e)=>e.key === 'Enter' && handleLinkSubmit()
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 245,
+                                lineNumber: 244,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1140,26 +1140,26 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                                         size: 16
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Composer.jsx",
-                                        lineNumber: 259,
+                                        lineNumber: 258,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                         children: "Broadcast Link"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Composer.jsx",
-                                        lineNumber: 260,
+                                        lineNumber: 259,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 253,
+                                lineNumber: 252,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 244,
+                        lineNumber: 243,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1170,19 +1170,19 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                         children: "Links can be opened with one click on any paired mobile or laptop device."
                     }, void 0, false, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 263,
+                        lineNumber: 262,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/Composer.jsx",
-                lineNumber: 243,
+                lineNumber: 242,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/components/Composer.jsx",
-        lineNumber: 86,
+        lineNumber: 85,
         columnNumber: 5
     }, this);
 }
@@ -1207,7 +1207,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js_
 ;
 ;
 ;
-function Header({ theme, setTheme, isMuted, setIsMuted, onOpenQr, connectedCount = 1 }) {
+function Header({ theme, setTheme, isMuted, setIsMuted, onOpenQr }) {
     const toggleTheme = ()=>{
         (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["playTapSound"])(isMuted);
         setTheme((prev)=>prev === 'light' ? 'dark' : 'light');
@@ -1223,29 +1223,53 @@ function Header({ theme, setTheme, isMuted, setIsMuted, onOpenQr, connectedCount
                 style: {
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '0.85rem'
+                    gap: '0.75rem'
                 },
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                     href: "/",
                     className: "blip-wordmark",
+                    style: {
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.55rem'
+                    },
                     children: [
-                        "slipshare",
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                            src: "/icons/ic_app_decorated.svg",
+                            alt: "slipshare logo",
+                            style: {
+                                width: '28px',
+                                height: '28px',
+                                borderRadius: '7px'
+                            }
+                        }, void 0, false, {
+                            fileName: "[project]/app/components/Header.jsx",
+                            lineNumber: 28,
+                            columnNumber: 11
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            children: "slipshare"
+                        }, void 0, false, {
+                            fileName: "[project]/app/components/Header.jsx",
+                            lineNumber: 33,
+                            columnNumber: 11
+                        }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                             className: "blip-wordmark-dot"
                         }, void 0, false, {
                             fileName: "[project]/app/components/Header.jsx",
-                            lineNumber: 30,
+                            lineNumber: 34,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/Header.jsx",
-                    lineNumber: 28,
+                    lineNumber: 27,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/components/Header.jsx",
-                lineNumber: 27,
+                lineNumber: 26,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1263,20 +1287,20 @@ function Header({ theme, setTheme, isMuted, setIsMuted, onOpenQr, connectedCount
                                 size: 16
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Header.jsx",
-                                lineNumber: 44,
+                                lineNumber: 48,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 children: "Pair Device"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Header.jsx",
-                                lineNumber: 45,
+                                lineNumber: 49,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Header.jsx",
-                        lineNumber: 36,
+                        lineNumber: 40,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1288,18 +1312,18 @@ function Header({ theme, setTheme, isMuted, setIsMuted, onOpenQr, connectedCount
                             size: 17
                         }, void 0, false, {
                             fileName: "[project]/app/components/Header.jsx",
-                            lineNumber: 55,
+                            lineNumber: 59,
                             columnNumber: 22
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$volume$2d$2$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Volume2$3e$__["Volume2"], {
                             size: 17
                         }, void 0, false, {
                             fileName: "[project]/app/components/Header.jsx",
-                            lineNumber: 55,
+                            lineNumber: 59,
                             columnNumber: 46
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/components/Header.jsx",
-                        lineNumber: 49,
+                        lineNumber: 53,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1311,30 +1335,30 @@ function Header({ theme, setTheme, isMuted, setIsMuted, onOpenQr, connectedCount
                             size: 17
                         }, void 0, false, {
                             fileName: "[project]/app/components/Header.jsx",
-                            lineNumber: 65,
+                            lineNumber: 69,
                             columnNumber: 32
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sun$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Sun$3e$__["Sun"], {
                             size: 17
                         }, void 0, false, {
                             fileName: "[project]/app/components/Header.jsx",
-                            lineNumber: 65,
+                            lineNumber: 69,
                             columnNumber: 53
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/components/Header.jsx",
-                        lineNumber: 59,
+                        lineNumber: 63,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/Header.jsx",
-                lineNumber: 34,
+                lineNumber: 38,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/components/Header.jsx",
-        lineNumber: 26,
+        lineNumber: 25,
         columnNumber: 5
     }, this);
 }
@@ -2227,15 +2251,17 @@ function SlipShareApp() {
             setIsUploading(false);
             setUploadProgress(0);
             if (xhr.status >= 200 && xhr.status < 300) {
-                (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["playBlipSound"])(isMuted);
+                (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["playOutSound"])(isMuted);
                 triggerToast(`${files.length} file${files.length > 1 ? 's' : ''} sent successfully`);
             } else {
+                (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["playFailSound"])(isMuted);
                 triggerToast('Upload failed, please retry');
             }
         };
         xhr.onerror = ()=>{
             setIsUploading(false);
             setUploadProgress(0);
+            (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["playFailSound"])(isMuted);
             triggerToast('Upload failed, network error');
         };
         xhr.send(formData);
@@ -2256,7 +2282,8 @@ function SlipShareApp() {
                     senderType: isMobile ? 'mobile' : 'desktop'
                 })
             });
-        } catch (e) {
+        } catch  {
+            (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["playFailSound"])(isMuted);
             triggerToast('Failed to send text');
         }
     };
@@ -2277,7 +2304,8 @@ function SlipShareApp() {
                     senderType: isMobile ? 'mobile' : 'desktop'
                 })
             });
-        } catch (e) {
+        } catch  {
+            (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["playFailSound"])(isMuted);
             triggerToast('Failed to broadcast link');
         }
     };
@@ -2309,11 +2337,10 @@ function SlipShareApp() {
                 setTheme: setTheme,
                 isMuted: isMuted,
                 setIsMuted: setIsMuted,
-                onOpenQr: ()=>setShowQrModal(true),
-                connectedCount: connectedDevices.length
+                onOpenQr: ()=>setShowQrModal(true)
             }, void 0, false, {
                 fileName: "[project]/app/page.jsx",
-                lineNumber: 275,
+                lineNumber: 279,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$PeersBar$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2326,7 +2353,7 @@ function SlipShareApp() {
                 onOpenQr: ()=>setShowQrModal(true)
             }, void 0, false, {
                 fileName: "[project]/app/page.jsx",
-                lineNumber: 285,
+                lineNumber: 288,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$Composer$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2341,7 +2368,7 @@ function SlipShareApp() {
                 triggerToast: triggerToast
             }, void 0, false, {
                 fileName: "[project]/app/page.jsx",
-                lineNumber: 296,
+                lineNumber: 299,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$ActivityFeed$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2353,7 +2380,7 @@ function SlipShareApp() {
                 triggerToast: triggerToast
             }, void 0, false, {
                 fileName: "[project]/app/page.jsx",
-                lineNumber: 309,
+                lineNumber: 312,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$QrModal$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2364,7 +2391,7 @@ function SlipShareApp() {
                 triggerToast: triggerToast
             }, void 0, false, {
                 fileName: "[project]/app/page.jsx",
-                lineNumber: 319,
+                lineNumber: 322,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$PreviewModal$2e$jsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -2373,7 +2400,7 @@ function SlipShareApp() {
                 isMuted: isMuted
             }, void 0, false, {
                 fileName: "[project]/app/page.jsx",
-                lineNumber: 328,
+                lineNumber: 331,
                 columnNumber: 7
             }, this),
             toastMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2381,13 +2408,13 @@ function SlipShareApp() {
                 children: toastMessage
             }, void 0, false, {
                 fileName: "[project]/app/page.jsx",
-                lineNumber: 335,
+                lineNumber: 338,
                 columnNumber: 24
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/page.jsx",
-        lineNumber: 273,
+        lineNumber: 277,
         columnNumber: 5
     }, this);
 }
@@ -2398,73 +2425,56 @@ function SlipShareApp() {
 __turbopack_context__.s([
     "playBlipSound",
     ()=>playBlipSound,
+    "playFailSound",
+    ()=>playFailSound,
+    "playOutSound",
+    ()=>playOutSound,
     "playTapSound",
     ()=>playTapSound
 ]);
-// Gentle Web Audio API synthesizer for instant pleasant feedback
-// Modeled after Blip's calming, lightweight tone aesthetics
-let audioCtx = null;
-function getAudioContext() {
-    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+// Audio player for official Blip sounds (Chime, Out, Fail, Resolve)
+// with Web Audio API synthesizer as graceful zero-latency fallback
+const audioCache = {};
+function playAudioFile(path, isMuted) {
+    if ("TURBOPACK compile-time truthy", 1) return;
+    //TURBOPACK unreachable
     ;
-    if (audioCtx && audioCtx.state === 'suspended') {
-        audioCtx.resume();
-    }
-    return audioCtx;
 }
 function playBlipSound(isMuted = false) {
-    if (isMuted) return;
-    try {
-        const ctx = getAudioContext();
-        if (!ctx) return;
-        const now = ctx.currentTime;
-        // Primary Tone: Soft Marimba-like bell
-        const osc1 = ctx.createOscillator();
-        const gain1 = ctx.createGain();
-        osc1.type = 'sine';
-        osc1.frequency.setValueAtTime(587.33, now); // D5
-        osc1.frequency.exponentialRampToValueAtTime(880, now + 0.08); // A5
-        gain1.gain.setValueAtTime(0.001, now);
-        gain1.gain.linearRampToValueAtTime(0.15, now + 0.02);
-        gain1.gain.exponentialRampToValueAtTime(0.0001, now + 0.35);
-        osc1.connect(gain1);
-        gain1.connect(ctx.destination);
-        osc1.start(now);
-        osc1.stop(now + 0.35);
-        // Harmonizing secondary chime
-        const osc2 = ctx.createOscillator();
-        const gain2 = ctx.createGain();
-        osc2.type = 'triangle';
-        osc2.frequency.setValueAtTime(1174.66, now + 0.06); // D6
-        gain2.gain.setValueAtTime(0.001, now + 0.06);
-        gain2.gain.linearRampToValueAtTime(0.08, now + 0.08);
-        gain2.gain.exponentialRampToValueAtTime(0.0001, now + 0.4);
-        osc2.connect(gain2);
-        gain2.connect(ctx.destination);
-        osc2.start(now + 0.06);
-        osc2.stop(now + 0.4);
-    } catch (e) {
-    // Graceful silence if audio permissions or background tabs block it
-    }
+    playAudioFile('/sounds/Chime.wav', isMuted);
+}
+function playOutSound(isMuted = false) {
+    playAudioFile('/sounds/Out.wav', isMuted);
 }
 function playTapSound(isMuted = false) {
-    if (isMuted) return;
+    playAudioFile('/sounds/Resolve.wav', isMuted);
+}
+function playFailSound(isMuted = false) {
+    playAudioFile('/sounds/Fail.wav', isMuted);
+}
+// Fallback Synthesizer
+let audioCtx = null;
+function playSynthChime() {
     try {
-        const ctx = getAudioContext();
-        if (!ctx) return;
-        const now = ctx.currentTime;
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return;
+        if (!audioCtx) audioCtx = new AudioContextClass();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(440, now);
-        osc.frequency.exponentialRampToValueAtTime(300, now + 0.04);
-        gain.gain.setValueAtTime(0.05, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+        osc.frequency.setValueAtTime(587.33, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.1);
+        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
         osc.connect(gain);
-        gain.connect(ctx.destination);
+        gain.connect(audioCtx.destination);
         osc.start(now);
-        osc.stop(now + 0.04);
-    } catch (e) {}
+        osc.stop(now + 0.35);
+    } catch  {
+    // Ignore audio context errors
+    }
 }
 }),
 ];
