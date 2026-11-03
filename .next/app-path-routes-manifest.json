@@ -1,5 +1,13 @@
 {
   "/_global-error/page": "/_global-error",
   "/_not-found/page": "/_not-found",
+  "/api/devices/route": "/api/devices",
+  "/api/events/route": "/api/events",
+  "/api/files/[filename]/download/route": "/api/files/[filename]/download",
+  "/api/files/[filename]/view/route": "/api/files/[filename]/view",
+  "/api/info/route": "/api/info",
+  "/api/items/[id]/route": "/api/items/[id]",
+  "/api/items/route": "/api/items",
+  "/api/upload/route": "/api/upload",
   "/page": "/"
 }

@@ -341,21 +341,11 @@ self.__SERVER_FILES_MANIFEST={
     "htmlLimitedBots": "[\\w-]+-Google|Google-[\\w-]+|Chrome-Lighthouse|Slurp|DuckDuckBot|baiduspider|yandex|sogou|bitlybot|tumblr|vkShare|quora link preview|redditbot|ia_archiver|Bingbot|BingPreview|applebot|facebookexternalhit|facebookcatalog|Twitterbot|LinkedInBot|Slackbot|Discordbot|WhatsApp|SkypeUriPreview|Yeti|googleweblight",
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.mjs",
+    "repoRoot": "/home/adhurva/.gemini/antigravity-ide/scratch/blip-share",
     "turbopack": {
       "root": "/home/adhurva/.gemini/antigravity-ide/scratch/blip-share"
     },
-    "repoRoot": "/home/adhurva/.gemini/antigravity-ide/scratch/blip-share",
-    "distDirRoot": ".next",
-    "_originalRewrites": {
-      "beforeFiles": [],
-      "afterFiles": [
-        {
-          "source": "/api/:path*",
-          "destination": "http://127.0.0.1:5000/api/:path*"
-        }
-      ],
-      "fallback": []
-    }
+    "distDirRoot": ".next"
   },
   "appDir": "/home/adhurva/.gemini/antigravity-ide/scratch/blip-share",
   "relativeAppDir": "",

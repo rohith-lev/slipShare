@@ -1,4 +1,13 @@
 {
   "version": 1,
-  "functions": {}
+  "functions": {
+    "/api/devices": {},
+    "/api/events": {},
+    "/api/files/[filename]/download": {},
+    "/api/files/[filename]/view": {},
+    "/api/info": {},
+    "/api/items": {},
+    "/api/items/[id]": {},
+    "/api/upload": {}
+  }
 }
