@@ -25,7 +25,9 @@ await nextApp.prepare();
 
 const app = express();
 const server = http.createServer(app);
-const wss = new WebSocketServer({ server, path: '/ws' });
+
+// Use noServer mode so Next.js HMR and our custom /ws WebSocket don't collide
+const wss = new WebSocketServer({ noServer: true });
 
 // Ensure uploads directory exists
 const uploadsDir = path.join(__dirname, 'uploads');
@@ -63,20 +65,36 @@ const storage = multer.diskStorage({
 
 const upload = multer({
   storage,
-  limits: { fileSize: 1024 * 1024 * 1024 * 10 }, // 10GB limit (practically unlimited for local transfers)
+  limits: { fileSize: 1024 * 1024 * 1024 * 10 }, // 10GB limit
 });
 
-// Helper to determine Local IP
-function getLocalIp() {
+// Helper to determine Local IPs prioritizing real Wi-Fi & Ethernet adapters
+function getLocalIps() {
   const interfaces = os.networkInterfaces();
-  for (const name of Object.keys(interfaces)) {
-    for (const iface of interfaces[name]) {
+  const ips = [];
+  const priorityPatterns = [/wlan/i, /wl/i, /wifi/i, /en/i, /eth/i];
+  const ignorePatterns = [/docker/i, /vbox/i, /vmnet/i, /br-/i, /cni/i, /tun/i, /tap/i, /lo/i];
+
+  for (const [name, ifaces] of Object.entries(interfaces)) {
+    if (ignorePatterns.some((p) => p.test(name))) continue;
+    for (const iface of ifaces) {
       if (iface.family === 'IPv4' && !iface.internal) {
-        return iface.address;
+        ips.push({ name, address: iface.address });
       }
     }
   }
-  return '127.0.0.1';
+
+  // Sort: Wi-Fi / Ethernet first
+  ips.sort((a, b) => {
+    const aPri = priorityPatterns.findIndex((p) => p.test(a.name));
+    const bPri = priorityPatterns.findIndex((p) => p.test(b.name));
+    if (aPri !== -1 && bPri === -1) return -1;
+    if (aPri === -1 && bPri !== -1) return 1;
+    if (aPri !== -1 && bPri !== -1) return aPri - bPri;
+    return 0;
+  });
+
+  return ips.length > 0 ? ips : [{ name: 'local', address: '127.0.0.1' }];
 }
 
 // In-memory shared items and peer connections
@@ -120,8 +138,18 @@ function broadcastDeviceList() {
 
 // REST Endpoints
 app.get('/api/info', async (req, res) => {
-  const localIp = getLocalIp();
-  const connectUrl = `http://${localIp}:${PORT}`;
+  const allIps = getLocalIps();
+  const primaryIp = allIps[0].address;
+
+  // If accessed via a remote host/proxy/tunnel, use that URL for pairing
+  const reqHost = req.headers['x-forwarded-host'] || req.headers.host;
+  let connectUrl;
+  if (reqHost && !reqHost.includes('localhost') && !reqHost.includes('127.0.0.1')) {
+    const proto = req.headers['x-forwarded-proto'] || (req.secure ? 'https' : 'http');
+    connectUrl = `${proto}://${reqHost}`;
+  } else {
+    connectUrl = `http://${primaryIp}:${PORT}`;
+  }
 
   try {
     const qrDataUrl = await qrcode.toDataURL(connectUrl, {
@@ -134,7 +162,8 @@ app.get('/api/info', async (req, res) => {
     });
 
     res.json({
-      localIp,
+      localIp: primaryIp,
+      allIps,
       port: PORT,
       connectUrl,
       qrDataUrl,
@@ -213,15 +242,23 @@ app.post('/api/upload', upload.array('files', 20), (req, res) => {
   res.status(201).json({ items: newItems });
 });
 
+// View media with proper Range support for audio/video streaming & accurate MIME types
 app.get('/api/files/:filename/view', (req, res) => {
   const safeFilename = path.basename(req.params.filename);
   const filePath = path.join(uploadsDir, safeFilename);
   if (!fs.existsSync(filePath)) {
     return res.status(404).send('File not found');
   }
-  fs.createReadStream(filePath).pipe(res);
+  res.sendFile(safeFilename, {
+    root: uploadsDir,
+    dotfiles: 'deny',
+    headers: {
+      'Cache-Control': 'public, max-age=86400',
+    },
+  });
 });
 
+// Download files with RFC UTF-8 filename encoding and progress reporting
 app.get('/api/files/:filename/download', (req, res) => {
   const safeFilename = path.basename(req.params.filename);
   const filePath = path.join(uploadsDir, safeFilename);
@@ -229,9 +266,7 @@ app.get('/api/files/:filename/download', (req, res) => {
     return res.status(404).send('File not found');
   }
   const originalName = req.query.name || safeFilename;
-  res.setHeader('Content-Disposition', `attachment; filename="${encodeURIComponent(originalName)}"`);
-  res.setHeader('Content-Type', 'application/octet-stream');
-  fs.createReadStream(filePath).pipe(res);
+  res.download(safeFilename, originalName, { root: uploadsDir });
 });
 
 app.delete('/api/items/:id', (req, res) => {
@@ -271,16 +306,37 @@ app.use((req, res) => {
   return handle(req, res);
 });
 
+// Explicit HTTP Upgrade handling for /ws
+server.on('upgrade', (req, socket, head) => {
+  try {
+    const host = req.headers.host || 'localhost';
+    const url = new URL(req.url, `http://${host}`);
+    if (url.pathname === '/ws' || url.pathname === '/ws/') {
+      wss.handleUpgrade(req, socket, head, (ws) => {
+        wss.emit('connection', ws, req);
+      });
+    }
+  } catch (err) {
+    console.error('WS upgrade error:', err);
+    socket.destroy();
+  }
+});
+
 // WebSocket connection handling
 wss.on('connection', (ws, req) => {
+  ws.isAlive = true;
+  ws.on('pong', () => {
+    ws.isAlive = true;
+  });
+
   const clientId = 'peer_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6);
   const userAgent = req.headers['user-agent'] || '';
   const isMobile = /mobile|iphone|ipod|android|blackberry|opera mini|iemobile|wpdesktop/i.test(userAgent);
 
-  let clientName = isMobile ? 'Mobile' : 'Laptop';
+  let clientName = isMobile ? 'Mobile Phone' : 'Laptop';
   if (/iphone/i.test(userAgent)) clientName = 'iPhone';
   else if (/ipad/i.test(userAgent)) clientName = 'iPad';
-  else if (/android/i.test(userAgent)) clientName = 'Android';
+  else if (/android/i.test(userAgent)) clientName = 'Android Phone';
   else if (/macintosh/i.test(userAgent)) clientName = 'MacBook';
   else if (/windows/i.test(userAgent)) clientName = 'Windows PC';
   else if (/linux/i.test(userAgent)) clientName = 'Linux Laptop';
@@ -306,15 +362,16 @@ wss.on('connection', (ws, req) => {
   broadcastDeviceList();
 
   ws.on('message', (message) => {
+    ws.isAlive = true;
     try {
       const data = JSON.parse(message.toString());
       if (data.type === 'set_name') {
         const info = connectedClients.get(ws);
-        if (info) {
-          info.name = data.name || info.name;
+        if (info && data.name && data.name.trim()) {
+          info.name = data.name.trim();
           broadcastDeviceList();
         }
-      } else if (data.type === 'ping') {
+      } else if (data.type === 'ping' || data.type === 'client_pong') {
         ws.send(JSON.stringify({ type: 'pong' }));
       }
     } catch (e) {
@@ -328,12 +385,40 @@ wss.on('connection', (ws, req) => {
   });
 });
 
+// 20-second heartbeat to detect dropped sockets and keep Wi-Fi links alive
+const heartbeatInterval = setInterval(() => {
+  for (const [ws, info] of connectedClients) {
+    if (ws.isAlive === false) {
+      console.log(`[WS] Pruned idle peer: ${info.name} (${info.id})`);
+      connectedClients.delete(ws);
+      ws.terminate();
+      broadcastDeviceList();
+      continue;
+    }
+    ws.isAlive = false;
+    try {
+      ws.ping();
+      if (ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ type: 'server_ping' }));
+      }
+    } catch {
+      connectedClients.delete(ws);
+      broadcastDeviceList();
+    }
+  }
+}, 20000);
+
+wss.on('close', () => {
+  clearInterval(heartbeatInterval);
+});
+
 server.listen(PORT, '0.0.0.0', () => {
-  const localIp = getLocalIp();
+  const allIps = getLocalIps();
   console.log(`\n======================================================`);
   console.log(`🚀 slipshare is running!`);
   console.log(`   Local URL:    http://localhost:${PORT}`);
-  console.log(`   Network URL:  http://${localIp}:${PORT}`);
-  console.log(`   Access from any device on Wi-Fi via: http://${localIp}:${PORT}`);
+  allIps.forEach(ip => {
+    console.log(`   Network (${ip.name}): http://${ip.address}:${PORT}`);
+  });
   console.log(`======================================================\n`);
 });

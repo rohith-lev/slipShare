@@ -82,8 +82,8 @@ export default function Composer({
   };
 
   return (
-    <div className="glass-panel" style={{ padding: '1.5rem' }}>
-      {/* Tab Switcher */}
+    <div className="composer-container glass-panel">
+      {/* Tab Switcher: 4 cleanly proportioned tabs for both desktop & mobile */}
       <div className="composer-tabs">
         <button
           className={`tab-btn ${activeTab === 'files' ? 'active' : ''}`}
@@ -93,7 +93,8 @@ export default function Composer({
           }}
         >
           <UploadCloud size={16} />
-          <span>Files & Media</span>
+          <span className="tab-label-desktop">Files & Media</span>
+          <span className="tab-label-mobile">Files</span>
         </button>
 
         <button
@@ -105,7 +106,8 @@ export default function Composer({
           }}
         >
           <Camera size={16} />
-          <span>Camera</span>
+          <span className="tab-label-desktop">Camera</span>
+          <span className="tab-label-mobile">Camera</span>
         </button>
 
         <button
@@ -116,7 +118,8 @@ export default function Composer({
           }}
         >
           <FileText size={16} />
-          <span>Quick Note</span>
+          <span className="tab-label-desktop">Quick Note</span>
+          <span className="tab-label-mobile">Note</span>
         </button>
 
         <button
@@ -127,7 +130,8 @@ export default function Composer({
           }}
         >
           <LinkIcon size={16} />
-          <span>Share Link</span>
+          <span className="tab-label-desktop">Share Link</span>
+          <span className="tab-label-mobile">Link</span>
         </button>
       </div>
 
@@ -173,9 +177,12 @@ export default function Composer({
           onClick={() => fileInputRef.current?.click()}
         >
           <div className="dropzone-icon-ring">
-            <UploadCloud size={32} />
+            <UploadCloud size={30} />
           </div>
-          <div className="dropzone-title">Drop files here or click to browse</div>
+          <div className="dropzone-title">
+            <span className="dropzone-title-desktop">Drop files here or click to browse</span>
+            <span className="dropzone-title-mobile">Tap to choose files or photos</span>
+          </div>
           <div className="dropzone-desc">
             Direct peer transfer at maximum local Wi-Fi speed. Original quality, no compression, no cloud storage.
           </div>
@@ -189,12 +196,11 @@ export default function Composer({
       {/* TAB 2: Camera Capture */}
       {activeTab === 'camera' && (
         <div
-          className="dropzone"
+          className="dropzone camera-dropzone"
           onClick={() => cameraInputRef.current?.click()}
-          style={{ borderColor: 'var(--blip-purple)' }}
         >
-          <div className="dropzone-icon-ring" style={{ background: 'rgba(124, 58, 237, 0.15)', color: 'var(--blip-purple)' }}>
-            <Camera size={32} />
+          <div className="dropzone-icon-ring camera-ring">
+            <Camera size={30} />
           </div>
           <div className="dropzone-title">Take Photo or Record Video</div>
           <div className="dropzone-desc">
@@ -220,17 +226,16 @@ export default function Composer({
               }
             }}
           />
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-              Press <kbd style={{ padding: '2px 5px', background: 'var(--bg-subtle)', borderRadius: '4px' }}>Ctrl + Enter</kbd> to broadcast
+          <div className="composer-footer">
+            <span className="composer-hint">
+              Press <kbd>Ctrl + Enter</kbd> to broadcast
             </span>
             <button
-              className="primary-btn"
+              className="primary-btn composer-send-btn"
               onClick={handleTextSubmit}
               disabled={!textContent.trim()}
-              style={{ opacity: textContent.trim() ? 1 : 0.6 }}
             >
-              <Send size={15} />
+              <Send size={14} />
               <span>Send Note</span>
             </button>
           </div>
@@ -240,26 +245,25 @@ export default function Composer({
       {/* TAB 4: Share Link */}
       {activeTab === 'link' && (
         <div className="text-composer">
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <div className="link-composer-row">
             <input
               type="text"
               className="composer-input"
-              placeholder="Paste any URL (e.g. youtube.com, github.com, article)..."
+              placeholder="Paste any URL (e.g. youtube.com, github.com)..."
               value={linkContent}
               onChange={(e) => setLinkContent(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleLinkSubmit()}
             />
             <button
-              className="primary-btn"
+              className="primary-btn composer-send-btn link-broadcast-btn"
               onClick={handleLinkSubmit}
               disabled={!linkContent.trim()}
-              style={{ flexShrink: 0, opacity: linkContent.trim() ? 1 : 0.6 }}
             >
-              <ArrowUpRight size={16} />
+              <ArrowUpRight size={15} />
               <span>Broadcast Link</span>
             </button>
           </div>
-          <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+          <span className="composer-hint">
             Links can be opened with one click on any paired mobile or laptop device.
           </span>
         </div>

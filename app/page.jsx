@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Header from './components/Header';
 import PeersBar from './components/PeersBar';
 import Composer from './components/Composer';
@@ -24,14 +24,20 @@ export default function SlipShareApp() {
   const [previewImage, setPreviewImage] = useState(null);
   const [toastMessage, setToastMessage] = useState(null);
 
-  // Device Info
+  // Device Info & WS Status
   const [deviceName, setDeviceName] = useState('My Device');
+  const [deviceType, setDeviceType] = useState('desktop');
+  const [wsStatus, setWsStatus] = useState('connecting');
 
   const wsRef = useRef(null);
   const toastTimeoutRef = useRef(null);
+  const reconnectTimeoutRef = useRef(null);
+  const isMountedRef = useRef(true);
 
-  // Initialize theme and device name on client mount
+  // Initialize theme and device detection on client mount
   useEffect(() => {
+    isMountedRef.current = true;
+
     const savedTheme = localStorage.getItem('slip_theme') || 'light';
     setTheme(savedTheme);
     document.documentElement.setAttribute('data-theme', savedTheme);
@@ -39,9 +45,28 @@ export default function SlipShareApp() {
     const savedMuted = localStorage.getItem('slip_muted') === 'true';
     setIsMuted(savedMuted);
 
-    const isMobile = /mobile|iphone|ipod|android|blackberry|opera mini|iemobile|wpdesktop/i.test(navigator.userAgent);
-    const savedDevice = localStorage.getItem('slip_device_name') || (isMobile ? 'Mobile Phone' : 'Laptop');
-    setDeviceName(savedDevice);
+    // Precise client-side device type detection
+    const isMobileDevice = /mobile|iphone|ipod|android|blackberry|opera mini|iemobile|wpdesktop/i.test(navigator.userAgent) ||
+      (typeof window !== 'undefined' && window.innerWidth <= 768 && ('ontouchstart' in window || navigator.maxTouchPoints > 0));
+    
+    setDeviceType(isMobileDevice ? 'mobile' : 'desktop');
+
+    const savedDevice = localStorage.getItem('slip_device_name');
+    if (savedDevice) {
+      setDeviceName(savedDevice);
+    } else {
+      if (/iphone/i.test(navigator.userAgent)) setDeviceName('iPhone');
+      else if (/ipad/i.test(navigator.userAgent)) setDeviceName('iPad');
+      else if (/android/i.test(navigator.userAgent)) setDeviceName('Android Phone');
+      else if (/macintosh/i.test(navigator.userAgent)) setDeviceName('MacBook');
+      else if (/windows/i.test(navigator.userAgent)) setDeviceName('Windows PC');
+      else if (/linux/i.test(navigator.userAgent)) setDeviceName('Linux Laptop');
+      else setDeviceName(isMobileDevice ? 'Mobile Phone' : 'Laptop');
+    }
+
+    return () => {
+      isMountedRef.current = false;
+    };
   }, []);
 
   // Sync theme
@@ -65,7 +90,9 @@ export default function SlipShareApp() {
   // Fetch Network & QR information
   const fetchNetworkInfo = async () => {
     try {
-      const res = await fetch('/api/info');
+      const res = await fetch('/api/info', {
+        headers: { 'ngrok-skip-browser-warning': 'true' },
+      });
       if (res.ok) {
         const data = await res.json();
         setNetworkInfo(data);
@@ -78,7 +105,9 @@ export default function SlipShareApp() {
   // Fetch initial items
   const fetchItems = async () => {
     try {
-      const res = await fetch('/api/items');
+      const res = await fetch('/api/items', {
+        headers: { 'ngrok-skip-browser-warning': 'true' },
+      });
       if (res.ok) {
         const data = await res.json();
         if (data.items) {
@@ -90,26 +119,32 @@ export default function SlipShareApp() {
     }
   };
 
+  const connectWebSocketRef = useRef(null);
+
   // Setup WebSocket connection
-  useEffect(() => {
-    fetchNetworkInfo();
-    fetchItems();
+  const connectWebSocket = useCallback(() => {
+    if (typeof window === 'undefined') return;
 
-    let isMounted = true;
-    let reconnectTimeout = null;
+    if (wsRef.current && (wsRef.current.readyState === WebSocket.OPEN || wsRef.current.readyState === WebSocket.CONNECTING)) {
+      return;
+    }
 
-    const connectWebSocket = () => {
-      if (typeof window === 'undefined') return;
-      
-      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-      const wsUrl = `${protocol}//${window.location.host}/ws`;
+    setWsStatus('connecting');
 
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const wsUrl = `${protocol}//${window.location.host}/ws`;
+
+    try {
       const ws = new WebSocket(wsUrl);
       wsRef.current = ws;
 
       ws.onopen = () => {
-        const currentName = localStorage.getItem('slip_device_name') || deviceName;
-        ws.send(JSON.stringify({ type: 'set_name', name: currentName }));
+        if (!isMountedRef.current) return;
+        setWsStatus('connected');
+        const customName = localStorage.getItem('slip_device_name');
+        if (customName) {
+          ws.send(JSON.stringify({ type: 'set_name', name: customName }));
+        }
       };
 
       ws.onmessage = (event) => {
@@ -118,8 +153,19 @@ export default function SlipShareApp() {
 
           if (data.type === 'welcome') {
             if (data.items) setItems(data.items);
+            if (!localStorage.getItem('slip_device_name') && data.clientName) {
+              setDeviceName(data.clientName);
+            }
+            if (data.clientType) {
+              setDeviceType(data.clientType);
+            }
           } else if (data.type === 'devices_updated') {
-            setConnectedDevices(data.devices || []);
+            const devices = data.devices || [];
+            setConnectedDevices(devices);
+            const selfDev = devices.find((d) => d.isSelf);
+            if (selfDev) {
+              setDeviceType(selfDev.type);
+            }
           } else if (data.type === 'item_received') {
             setItems((prev) => {
               if (prev.some((i) => i.id === data.item.id)) return prev;
@@ -131,6 +177,10 @@ export default function SlipShareApp() {
             setItems((prev) => prev.filter((i) => i.id !== data.itemId));
           } else if (data.type === 'history_cleared') {
             setItems([]);
+          } else if (data.type === 'server_ping') {
+            if (ws.readyState === WebSocket.OPEN) {
+              ws.send(JSON.stringify({ type: 'client_pong' }));
+            }
           }
         } catch (err) {
           console.error('WS parse error:', err);
@@ -138,26 +188,65 @@ export default function SlipShareApp() {
       };
 
       ws.onclose = () => {
-        if (isMounted) {
-          reconnectTimeout = setTimeout(connectWebSocket, 3000);
-        }
+        if (!isMountedRef.current) return;
+        setWsStatus('disconnected');
+        if (reconnectTimeoutRef.current) clearTimeout(reconnectTimeoutRef.current);
+        reconnectTimeoutRef.current = setTimeout(() => {
+          if (connectWebSocketRef.current) connectWebSocketRef.current();
+        }, 2500);
       };
 
       ws.onerror = () => {
         ws.close();
       };
-    };
-
-    connectWebSocket();
-
-    return () => {
-      isMounted = false;
-      if (reconnectTimeout) clearTimeout(reconnectTimeout);
-      if (wsRef.current) wsRef.current.close();
-    };
+    } catch (e) {
+      console.warn('WS creation error:', e);
+      setWsStatus('disconnected');
+    }
   }, [isMuted]);
 
-  // Handle device nickname update
+  useEffect(() => {
+    connectWebSocketRef.current = connectWebSocket;
+  }, [connectWebSocket]);
+
+  useEffect(() => {
+    fetchNetworkInfo();
+    fetchItems();
+    connectWebSocket();
+
+    // Reconnect on tab visibility change (e.g. phone screen unlock)
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        if (!wsRef.current || wsRef.current.readyState !== WebSocket.OPEN) {
+          connectWebSocket();
+        }
+        fetchNetworkInfo();
+        fetchItems();
+      }
+    };
+
+    // Client-side ping to prevent Wi-Fi router / carrier TCP timeouts
+    const pingTimer = setInterval(() => {
+      if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+        try {
+          wsRef.current.send(JSON.stringify({ type: 'ping' }));
+        } catch {
+          // ignore
+        }
+      }
+    }, 15000);
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      clearInterval(pingTimer);
+      if (reconnectTimeoutRef.current) clearTimeout(reconnectTimeoutRef.current);
+      if (wsRef.current) wsRef.current.close();
+    };
+  }, [connectWebSocket]);
+
+  // Rename current device
   const handleDeviceNameChange = (newName) => {
     setDeviceName(newName);
     localStorage.setItem('slip_device_name', newName);
@@ -178,12 +267,12 @@ export default function SlipShareApp() {
       formData.append('files', files[i]);
     }
 
-    const isMobile = /mobile|iphone|ipod|android/i.test(navigator.userAgent);
     formData.append('senderName', deviceName);
-    formData.append('senderType', isMobile ? 'mobile' : 'desktop');
+    formData.append('senderType', deviceType);
 
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '/api/upload');
+    xhr.setRequestHeader('ngrok-skip-browser-warning', 'true');
 
     xhr.upload.onprogress = (e) => {
       if (e.lengthComputable) {
@@ -216,16 +305,18 @@ export default function SlipShareApp() {
 
   // Send Text Note
   const handleSendText = async (content) => {
-    const isMobile = /mobile|iphone|ipod|android/i.test(navigator.userAgent);
     try {
       await fetch('/api/items', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true',
+        },
         body: JSON.stringify({
           type: 'text',
           content,
           senderName: deviceName,
-          senderType: isMobile ? 'mobile' : 'desktop',
+          senderType: deviceType,
         }),
       });
     } catch {
@@ -236,17 +327,19 @@ export default function SlipShareApp() {
 
   // Send Link
   const handleSendLink = async (url) => {
-    const isMobile = /mobile|iphone|ipod|android/i.test(navigator.userAgent);
     try {
       await fetch('/api/items', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true',
+        },
         body: JSON.stringify({
           type: 'link',
           content: url,
           title: url,
           senderName: deviceName,
-          senderType: isMobile ? 'mobile' : 'desktop',
+          senderType: deviceType,
         }),
       });
     } catch {
@@ -258,8 +351,11 @@ export default function SlipShareApp() {
   // Delete Single Item
   const handleDeleteItem = async (id) => {
     try {
-      await fetch(`/api/items/${id}`, { method: 'DELETE' });
-    } catch (e) {
+      await fetch(`/api/items/${id}`, {
+        method: 'DELETE',
+        headers: { 'ngrok-skip-browser-warning': 'true' },
+      });
+    } catch {
       triggerToast('Failed to delete item');
     }
   };
@@ -267,8 +363,11 @@ export default function SlipShareApp() {
   // Clear All Items
   const handleClearAll = async () => {
     try {
-      await fetch('/api/items', { method: 'DELETE' });
-    } catch (e) {
+      await fetch('/api/items', {
+        method: 'DELETE',
+        headers: { 'ngrok-skip-browser-warning': 'true' },
+      });
+    } catch {
       triggerToast('Failed to clear history');
     }
   };
@@ -284,15 +383,18 @@ export default function SlipShareApp() {
         onOpenQr={() => setShowQrModal(true)}
       />
 
-      {/* Connected Peers Strip */}
+      {/* Connected Peers Strip with accurate live Wi-Fi detection */}
       <PeersBar
         networkInfo={networkInfo}
         connectedDevices={connectedDevices}
         deviceName={deviceName}
         setDeviceName={setDeviceName}
+        deviceType={deviceType}
+        wsStatus={wsStatus}
         onNameChange={handleDeviceNameChange}
         isMuted={isMuted}
         onOpenQr={() => setShowQrModal(true)}
+        onReconnect={connectWebSocket}
       />
 
       {/* Drag & Drop / Instant Sharing Area */}
