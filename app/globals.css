@@ -139,6 +139,13 @@ body {
   flex-shrink: 0;
 }
 
+.brand-title {
+  /* Ensures the wordmark doesn't cause header overflow on mobile */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .blip-wordmark-dot {
   display: inline-block;
   width: 7px;
@@ -1018,57 +1025,81 @@ body {
    ========================================================== */
 @media (max-width: 640px) {
   .app-container {
-    padding: 0.75rem 0.75rem 4.5rem;
-    gap: 0.9rem;
+    padding: 0.6rem 0.6rem 5rem;
+    gap: 0.75rem;
+    /* Prevent any horizontal overflow on the page */
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 
   /* Header on Mobile */
   .app-header {
-    padding: 0.65rem 0.85rem;
-    top: 0.4rem;
+    padding: 0.55rem 0.75rem;
+    top: 0.35rem;
     border-radius: var(--radius-md);
+    /* Prevent header wrapping */
+    flex-wrap: nowrap;
+    min-width: 0;
+  }
+
+  .header-brand {
+    flex-shrink: 1;
+    min-width: 0;
+    overflow: hidden;
   }
 
   .blip-wordmark {
-    font-size: 1.15rem;
-    gap: 0.4rem;
+    font-size: 1.05rem;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+
+  .brand-title {
+    /* Truncate brand text if absolutely needed */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .brand-logo {
-    width: 24px;
-    height: 24px;
-    border-radius: 6px;
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
+    flex-shrink: 0;
   }
 
   .header-actions {
-    gap: 0.35rem;
+    gap: 0.3rem;
+    flex-shrink: 0;
   }
 
+  /* Show short "Pair" text on mobile, hide full "Pair Device" */
   .pair-text-desktop {
-    display: none;
+    display: none !important;
   }
 
   .pair-text-mobile {
-    display: inline;
+    display: inline !important;
   }
 
   .header-pair-btn {
-    padding: 0.42rem 0.75rem;
-    font-size: 0.78rem;
-    gap: 0.3rem;
+    padding: 0.4rem 0.65rem;
+    font-size: 0.76rem;
+    gap: 0.28rem;
+    white-space: nowrap;
   }
 
   .header-actions .icon-btn {
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
   }
 
   /* Peers Strip on Mobile */
   .peers-strip {
-    padding: 0.75rem 0.9rem;
+    padding: 0.7rem 0.85rem;
     flex-direction: column;
     align-items: stretch;
-    gap: 0.75rem;
+    gap: 0.65rem;
   }
 
   .radar-indicator {
@@ -1077,101 +1108,139 @@ body {
   }
 
   .radar-title-row {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
+    gap: 0.3rem;
+  }
+
+  .radar-ip-tag {
+    font-size: 0.68rem;
   }
 
   .radar-status-row {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
+    flex-wrap: wrap;
+    gap: 0.3rem;
   }
 
   .devices-list {
     width: 100%;
-    gap: 0.45rem;
+    gap: 0.4rem;
+    flex-wrap: wrap;
   }
 
   .device-badge {
-    font-size: 0.76rem;
-    padding: 0.3rem 0.65rem;
+    font-size: 0.74rem;
+    padding: 0.28rem 0.6rem;
   }
 
-  /* Composer on Mobile: 4 evenly proportioned columns with zero clipping */
+  .name-edit-input {
+    width: 88px;
+    font-size: 0.76rem;
+  }
+
+  /* Composer on Mobile: 4 equal columns, never clips */
   .composer-container {
-    padding: 1rem;
+    padding: 0.85rem;
   }
 
   .composer-tabs {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    padding: 0.25rem;
-    gap: 0.2rem;
+    padding: 0.22rem;
+    gap: 0.15rem;
     border-radius: var(--radius-md);
-    margin-bottom: 1rem;
+    margin-bottom: 0.9rem;
+    /* Ensure the tab row never overflows the card */
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .tab-btn {
+    /* Stack icon + label vertically on mobile */
     flex-direction: column;
-    padding: 0.45rem 0.2rem;
-    font-size: 0.72rem;
-    gap: 0.25rem;
+    padding: 0.4rem 0.1rem;
+    font-size: 0;          /* hide any inline text that isn't span-wrapped */
+    gap: 0.2rem;
     border-radius: var(--radius-sm);
+    min-width: 0;
+    overflow: hidden;
   }
 
+  /* Mobile tab labels: keep very short, no wrap */
   .tab-label-desktop {
-    display: none;
+    display: none !important;
   }
 
   .tab-label-mobile {
-    display: inline;
-    font-size: 0.72rem;
+    display: block !important;
+    font-size: 0.68rem;
     font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    text-align: center;
   }
 
   /* Dropzone on Mobile */
   .dropzone {
-    padding: 2rem 1rem;
+    padding: 1.75rem 0.85rem;
     border-radius: var(--radius-md);
+    min-height: 180px;
   }
 
   .dropzone-icon-ring {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 0.65rem;
+    width: 46px;
+    height: 46px;
+    margin-bottom: 0.6rem;
   }
 
   .dropzone-title {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+    margin-bottom: 0.3rem;
   }
 
   .dropzone-title-desktop {
-    display: none;
+    display: none !important;
   }
 
   .dropzone-title-mobile {
-    display: inline;
+    display: inline !important;
   }
 
   .dropzone-desc {
-    font-size: 0.78rem;
-    margin-bottom: 0.65rem;
+    font-size: 0.76rem;
+    margin-bottom: 0.6rem;
     max-width: 100%;
+    line-height: 1.4;
   }
 
   .dropzone-badge {
-    font-size: 0.72rem;
-    padding: 0.3rem 0.65rem;
+    font-size: 0.7rem;
+    padding: 0.28rem 0.6rem;
     text-align: center;
+    max-width: 100%;
   }
 
-  /* Composer Inputs on Mobile */
+  /* Composer Text/Link inputs on Mobile */
   .composer-textarea {
-    min-height: 90px;
-    font-size: 0.88rem;
-    padding: 0.75rem;
+    min-height: 88px;
+    font-size: 0.86rem;
+    padding: 0.7rem 0.85rem;
+  }
+
+  .composer-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
   }
 
   .composer-send-btn {
-    padding: 0.45rem 0.85rem;
-    font-size: 0.8rem;
+    width: 100%;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.82rem;
   }
 
   .link-composer-row {
@@ -1184,33 +1253,67 @@ body {
     justify-content: center;
   }
 
-  /* Activity Feed on Mobile */
-  .feed-card {
-    padding: 0.85rem;
-    gap: 0.65rem;
-  }
-
-  .item-left {
-    gap: 0.65rem;
-  }
-
-  .item-icon-box {
-    width: 36px;
-    height: 36px;
-  }
-
-  .item-title {
+  .composer-input {
     font-size: 0.88rem;
   }
 
+  /* Activity Feed on Mobile */
+  .feed-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .feed-filters {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .filter-btn {
+    flex: 1;
+    font-size: 0.76rem;
+    padding: 0.28rem 0.4rem;
+    text-align: center;
+  }
+
+  .feed-card {
+    padding: 0.8rem;
+    gap: 0.55rem;
+  }
+
+  .item-left {
+    gap: 0.6rem;
+  }
+
+  .item-icon-box {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .item-title {
+    font-size: 0.86rem;
+  }
+
   .item-snippet {
-    font-size: 0.82rem;
-    padding: 0.45rem 0.65rem;
+    font-size: 0.8rem;
+    padding: 0.42rem 0.6rem;
+    max-height: 120px;
+  }
+
+  .item-meta {
+    font-size: 0.7rem;
+    flex-wrap: wrap;
+    gap: 0.3rem;
   }
 
   .image-thumbnail-box {
-    width: 58px;
-    height: 58px;
+    width: 54px;
+    height: 54px;
+  }
+
+  .item-actions {
+    gap: 0.25rem;
   }
 
   .item-actions .icon-btn {
@@ -1219,13 +1322,26 @@ body {
   }
 
   /* QR Modal on Mobile */
+  .modal-overlay {
+    padding: 0.6rem;
+    align-items: flex-end;
+  }
+
   .modal-card {
-    padding: 1.25rem 1rem;
-    max-width: 95vw;
+    padding: 1.2rem 0.95rem 1.5rem;
+    max-width: 100%;
+    border-radius: var(--radius-lg) var(--radius-lg) var(--radius-md) var(--radius-md);
+    /* Slide up from bottom on mobile */
+    animation: slideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
   }
 
   .qr-box-wrap {
-    padding: 0.75rem;
+    padding: 0.7rem;
   }
 
   .qr-box-wrap img {
@@ -1234,7 +1350,28 @@ body {
   }
 
   .url-copy-pill {
-    font-size: 0.75rem;
-    padding: 0.5rem 0.75rem;
+    font-size: 0.72rem;
+    padding: 0.48rem 0.7rem;
+  }
+
+  /* Toast on mobile: wider, above bottom nav area */
+  .toast-notice {
+    bottom: 5.5rem;
+    left: 1rem;
+    right: 1rem;
+    transform: none;
+    text-align: center;
+    white-space: normal;
+    font-size: 0.82rem;
+  }
+
+  @keyframes popIn {
+    from { transform: translateY(10px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+
+  /* Progress card */
+  .progress-card {
+    padding: 0.7rem 0.9rem;
   }
 }

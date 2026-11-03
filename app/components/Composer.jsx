@@ -114,12 +114,12 @@ export default function Composer({
           onClick={() => {
             playTapSound(isMuted);
             setActiveTab('camera');
-            cameraInputRef.current?.click();
+            // Do NOT auto-open camera on tab click — user taps the explicit button inside
           }}
         >
           <Camera size={16} />
           <span className="tab-label-desktop">Camera</span>
-          <span className="tab-label-mobile">Camera</span>
+          <span className="tab-label-mobile">Cam</span>
         </button>
 
         <button

@@ -33,6 +33,8 @@ export default function SlipShareApp() {
   const toastTimeoutRef = useRef(null);
   const reconnectTimeoutRef = useRef(null);
   const isMountedRef = useRef(true);
+  // Ref for isMuted so WS onmessage closure always has current value
+  const isMutedRef = useRef(isMuted);
 
   // Initialize theme and device detection on client mount
   useEffect(() => {
@@ -78,6 +80,7 @@ export default function SlipShareApp() {
   // Sync sound settings
   useEffect(() => {
     localStorage.setItem('slip_muted', String(isMuted));
+    isMutedRef.current = isMuted;
   }, [isMuted]);
 
   // Trigger toast notifications
@@ -171,7 +174,7 @@ export default function SlipShareApp() {
               if (prev.some((i) => i.id === data.item.id)) return prev;
               return [data.item, ...prev];
             });
-            playBlipSound(isMuted);
+            playBlipSound(isMutedRef.current);
             triggerToast(`New ${data.item.type} from ${data.item.senderName}`);
           } else if (data.type === 'item_deleted') {
             setItems((prev) => prev.filter((i) => i.id !== data.itemId));

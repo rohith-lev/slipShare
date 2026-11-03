@@ -653,13 +653,25 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
         e.stopPropagation();
         setIsDragOver(false);
         if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-            onUploadFiles(Array.from(e.dataTransfer.files));
+            const validFiles = Array.from(e.dataTransfer.files).filter((f)=>f.name);
+            if (validFiles.length > 0) {
+                onUploadFiles(validFiles);
+            }
         }
     };
     const handleFileSelect = (e)=>{
-        if (e.target.files && e.target.files.length > 0) {
-            onUploadFiles(Array.from(e.target.files));
-            e.target.value = '';
+        const input = e.target;
+        if (input.files && input.files.length > 0) {
+            const selectedFiles = Array.from(input.files);
+            onUploadFiles(selectedFiles);
+            // Asynchronously reset value so mobile browsers don't revoke file descriptors
+            setTimeout(()=>{
+                try {
+                    input.value = '';
+                } catch  {
+                // ignore
+                }
+            }, 800);
         }
     };
     const handleTextSubmit = (e)=>{
@@ -683,10 +695,7 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
         triggerToast('Link broadcast to connected devices');
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "glass-panel",
-        style: {
-            padding: '1.5rem'
-        },
+        className: "composer-container glass-panel",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "composer-tabs",
@@ -702,20 +711,29 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                                 size: 16
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 95,
+                                lineNumber: 107,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "tab-label-desktop",
                                 children: "Files & Media"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 96,
+                                lineNumber: 108,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "tab-label-mobile",
+                                children: "Files"
+                            }, void 0, false, {
+                                fileName: "[project]/app/components/Composer.jsx",
+                                lineNumber: 109,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 88,
+                        lineNumber: 100,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -723,27 +741,36 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                         onClick: ()=>{
                             (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["playTapSound"])(isMuted);
                             setActiveTab('camera');
-                            cameraInputRef.current?.click();
+                        // Do NOT auto-open camera on tab click — user taps the explicit button inside
                         },
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$camera$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Camera$3e$__["Camera"], {
                                 size: 16
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 107,
+                                lineNumber: 120,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "tab-label-desktop",
                                 children: "Camera"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 108,
+                                lineNumber: 121,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "tab-label-mobile",
+                                children: "Cam"
+                            }, void 0, false, {
+                                fileName: "[project]/app/components/Composer.jsx",
+                                lineNumber: 122,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 99,
+                        lineNumber: 112,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -757,20 +784,29 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                                 size: 16
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 118,
+                                lineNumber: 132,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "tab-label-desktop",
                                 children: "Quick Note"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 119,
+                                lineNumber: 133,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "tab-label-mobile",
+                                children: "Note"
+                            }, void 0, false, {
+                                fileName: "[project]/app/components/Composer.jsx",
+                                lineNumber: 134,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 111,
+                        lineNumber: 125,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -784,26 +820,35 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                                 size: 16
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 129,
+                                lineNumber: 144,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "tab-label-desktop",
                                 children: "Share Link"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 130,
+                                lineNumber: 145,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "tab-label-mobile",
+                                children: "Link"
+                            }, void 0, false, {
+                                fileName: "[project]/app/components/Composer.jsx",
+                                lineNumber: 146,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 122,
+                        lineNumber: 137,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/Composer.jsx",
-                lineNumber: 87,
+                lineNumber: 99,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -816,7 +861,7 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                 }
             }, void 0, false, {
                 fileName: "[project]/app/components/Composer.jsx",
-                lineNumber: 135,
+                lineNumber: 151,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -830,7 +875,7 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                 }
             }, void 0, false, {
                 fileName: "[project]/app/components/Composer.jsx",
-                lineNumber: 142,
+                lineNumber: 158,
                 columnNumber: 7
             }, this),
             isUploading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -854,7 +899,7 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                                 children: "Transferring to peers..."
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 155,
+                                lineNumber: 171,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -869,13 +914,13 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 156,
+                                lineNumber: 172,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 154,
+                        lineNumber: 170,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -887,18 +932,18 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                             }
                         }, void 0, false, {
                             fileName: "[project]/app/components/Composer.jsx",
-                            lineNumber: 161,
+                            lineNumber: 177,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 160,
+                        lineNumber: 176,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/Composer.jsx",
-                lineNumber: 153,
+                lineNumber: 169,
                 columnNumber: 9
             }, this),
             activeTab === 'files' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -911,23 +956,40 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "dropzone-icon-ring",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$cloud$2d$upload$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__UploadCloud$3e$__["UploadCloud"], {
-                            size: 32
+                            size: 30
                         }, void 0, false, {
                             fileName: "[project]/app/components/Composer.jsx",
-                            lineNumber: 176,
+                            lineNumber: 192,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 175,
+                        lineNumber: 191,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "dropzone-title",
-                        children: "Drop files here or click to browse"
-                    }, void 0, false, {
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "dropzone-title-desktop",
+                                children: "Drop files here or click to browse"
+                            }, void 0, false, {
+                                fileName: "[project]/app/components/Composer.jsx",
+                                lineNumber: 195,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "dropzone-title-mobile",
+                                children: "Tap to choose files or photos"
+                            }, void 0, false, {
+                                fileName: "[project]/app/components/Composer.jsx",
+                                lineNumber: 196,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 178,
+                        lineNumber: 194,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -935,7 +997,7 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                         children: "Direct peer transfer at maximum local Wi-Fi speed. Original quality, no compression, no cloud storage."
                     }, void 0, false, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 179,
+                        lineNumber: 198,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -946,51 +1008,44 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                                 color: "var(--blip-blue)"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 183,
+                                lineNumber: 202,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 children: "Unlimited file size • All formats accepted"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 184,
+                                lineNumber: 203,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 182,
+                        lineNumber: 201,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/Composer.jsx",
-                lineNumber: 168,
+                lineNumber: 184,
                 columnNumber: 9
             }, this),
             activeTab === 'camera' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "dropzone",
+                className: "dropzone camera-dropzone",
                 onClick: ()=>cameraInputRef.current?.click(),
-                style: {
-                    borderColor: 'var(--blip-purple)'
-                },
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "dropzone-icon-ring",
-                        style: {
-                            background: 'rgba(124, 58, 237, 0.15)',
-                            color: 'var(--blip-purple)'
-                        },
+                        className: "dropzone-icon-ring camera-ring",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$camera$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Camera$3e$__["Camera"], {
-                            size: 32
+                            size: 30
                         }, void 0, false, {
                             fileName: "[project]/app/components/Composer.jsx",
-                            lineNumber: 197,
+                            lineNumber: 215,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 196,
+                        lineNumber: 214,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -998,7 +1053,7 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                         children: "Take Photo or Record Video"
                     }, void 0, false, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 199,
+                        lineNumber: 217,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1006,24 +1061,29 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                         children: "Instantly snap a picture or record video on your phone and stream it directly to your laptop."
                     }, void 0, false, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 200,
+                        lineNumber: 218,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        type: "button",
                         className: "primary-btn",
                         style: {
                             marginTop: '0.5rem'
                         },
+                        onClick: (e)=>{
+                            e.stopPropagation();
+                            cameraInputRef.current?.click();
+                        },
                         children: "Open Camera"
                     }, void 0, false, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 203,
+                        lineNumber: 221,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/Composer.jsx",
-                lineNumber: 191,
+                lineNumber: 210,
                 columnNumber: 9
             }, this),
             activeTab === 'text' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1041,121 +1101,44 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                         }
                     }, void 0, false, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 212,
+                        lineNumber: 238,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        style: {
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center'
-                        },
+                        className: "composer-footer",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                style: {
-                                    fontSize: '0.78rem',
-                                    color: 'var(--text-muted)'
-                                },
+                                className: "composer-hint",
                                 children: [
                                     "Press ",
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("kbd", {
-                                        style: {
-                                            padding: '2px 5px',
-                                            background: 'var(--bg-subtle)',
-                                            borderRadius: '4px'
-                                        },
                                         children: "Ctrl + Enter"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Composer.jsx",
-                                        lineNumber: 225,
+                                        lineNumber: 251,
                                         columnNumber: 21
                                     }, this),
                                     " to broadcast"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 224,
+                                lineNumber: 250,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                className: "primary-btn",
+                                className: "primary-btn composer-send-btn",
                                 onClick: handleTextSubmit,
                                 disabled: !textContent.trim(),
-                                style: {
-                                    opacity: textContent.trim() ? 1 : 0.6
-                                },
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$send$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Send$3e$__["Send"], {
-                                        size: 15
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/components/Composer.jsx",
-                                        lineNumber: 233,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: "Send Note"
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/components/Composer.jsx",
-                                        lineNumber: 234,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 227,
-                                columnNumber: 13
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 223,
-                        columnNumber: 11
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/app/components/Composer.jsx",
-                lineNumber: 211,
-                columnNumber: 9
-            }, this),
-            activeTab === 'link' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "text-composer",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        style: {
-                            display: 'flex',
-                            gap: '0.5rem'
-                        },
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                type: "text",
-                                className: "composer-input",
-                                placeholder: "Paste any URL (e.g. youtube.com, github.com, article)...",
-                                value: linkContent,
-                                onChange: (e)=>setLinkContent(e.target.value),
-                                onKeyDown: (e)=>e.key === 'Enter' && handleLinkSubmit()
-                            }, void 0, false, {
-                                fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 244,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                className: "primary-btn",
-                                onClick: handleLinkSubmit,
-                                disabled: !linkContent.trim(),
-                                style: {
-                                    flexShrink: 0,
-                                    opacity: linkContent.trim() ? 1 : 0.6
-                                },
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$up$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowUpRight$3e$__["ArrowUpRight"], {
-                                        size: 16
+                                        size: 14
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Composer.jsx",
                                         lineNumber: 258,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        children: "Broadcast Link"
+                                        children: "Send Note"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/Composer.jsx",
                                         lineNumber: 259,
@@ -1164,36 +1147,88 @@ function Composer({ activeTab, setActiveTab, onUploadFiles, onSendText, onSendLi
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/Composer.jsx",
-                                lineNumber: 252,
+                                lineNumber: 253,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 243,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        style: {
-                            fontSize: '0.78rem',
-                            color: 'var(--text-muted)'
-                        },
-                        children: "Links can be opened with one click on any paired mobile or laptop device."
-                    }, void 0, false, {
-                        fileName: "[project]/app/components/Composer.jsx",
-                        lineNumber: 262,
+                        lineNumber: 249,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/Composer.jsx",
-                lineNumber: 242,
+                lineNumber: 237,
+                columnNumber: 9
+            }, this),
+            activeTab === 'link' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "text-composer",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "link-composer-row",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                type: "text",
+                                className: "composer-input",
+                                placeholder: "Paste any URL (e.g. youtube.com, github.com)...",
+                                value: linkContent,
+                                onChange: (e)=>setLinkContent(e.target.value),
+                                onKeyDown: (e)=>e.key === 'Enter' && handleLinkSubmit()
+                            }, void 0, false, {
+                                fileName: "[project]/app/components/Composer.jsx",
+                                lineNumber: 269,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                className: "primary-btn composer-send-btn link-broadcast-btn",
+                                onClick: handleLinkSubmit,
+                                disabled: !linkContent.trim(),
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$up$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowUpRight$3e$__["ArrowUpRight"], {
+                                        size: 15
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/components/Composer.jsx",
+                                        lineNumber: 282,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        children: "Broadcast Link"
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/components/Composer.jsx",
+                                        lineNumber: 283,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/app/components/Composer.jsx",
+                                lineNumber: 277,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/app/components/Composer.jsx",
+                        lineNumber: 268,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        className: "composer-hint",
+                        children: "Links can be opened with one click on any paired mobile or laptop device."
+                    }, void 0, false, {
+                        fileName: "[project]/app/components/Composer.jsx",
+                        lineNumber: 286,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/app/components/Composer.jsx",
+                lineNumber: 267,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/components/Composer.jsx",
-        lineNumber: 85,
+        lineNumber: 97,
         columnNumber: 5
     }, this);
 }
@@ -1238,34 +1273,22 @@ function Header({ theme, setTheme, isMuted, setIsMuted, onOpenQr }) {
         className: "app-header glass-panel",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                style: {
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.75rem'
-                },
+                className: "header-brand",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                     href: "/",
                     className: "blip-wordmark",
-                    style: {
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.55rem'
-                    },
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                             src: "/icons/ic_app_decorated.svg",
                             alt: "slipshare logo",
-                            style: {
-                                width: '28px',
-                                height: '28px',
-                                borderRadius: '7px'
-                            }
+                            className: "brand-logo"
                         }, void 0, false, {
                             fileName: "[project]/app/components/Header.jsx",
                             lineNumber: 28,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: "brand-title",
                             children: "slipshare"
                         }, void 0, false, {
                             fileName: "[project]/app/components/Header.jsx",
@@ -1294,7 +1317,7 @@ function Header({ theme, setTheme, isMuted, setIsMuted, onOpenQr }) {
                 className: "header-actions",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                        className: "primary-btn",
+                        className: "primary-btn header-pair-btn",
                         onClick: ()=>{
                             (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["playTapSound"])(isMuted);
                             onOpenQr();
@@ -1302,17 +1325,26 @@ function Header({ theme, setTheme, isMuted, setIsMuted, onOpenQr }) {
                         title: "Connect mobile device via QR",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$qr$2d$code$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__QrCode$3e$__["QrCode"], {
-                                size: 16
+                                size: 15
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Header.jsx",
                                 lineNumber: 48,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "pair-text-desktop",
                                 children: "Pair Device"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/Header.jsx",
                                 lineNumber: 49,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "pair-text-mobile",
+                                children: "Pair"
+                            }, void 0, false, {
+                                fileName: "[project]/app/components/Header.jsx",
+                                lineNumber: 50,
                                 columnNumber: 11
                             }, this)
                         ]
@@ -1327,21 +1359,21 @@ function Header({ theme, setTheme, isMuted, setIsMuted, onOpenQr }) {
                         title: isMuted ? 'Unmute sounds' : 'Mute sounds',
                         "aria-label": "Toggle sound",
                         children: isMuted ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$volume$2d$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__VolumeX$3e$__["VolumeX"], {
-                            size: 17
+                            size: 16
                         }, void 0, false, {
                             fileName: "[project]/app/components/Header.jsx",
-                            lineNumber: 59,
+                            lineNumber: 60,
                             columnNumber: 22
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$volume$2d$2$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Volume2$3e$__["Volume2"], {
-                            size: 17
+                            size: 16
                         }, void 0, false, {
                             fileName: "[project]/app/components/Header.jsx",
-                            lineNumber: 59,
+                            lineNumber: 60,
                             columnNumber: 46
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/components/Header.jsx",
-                        lineNumber: 53,
+                        lineNumber: 54,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1350,21 +1382,21 @@ function Header({ theme, setTheme, isMuted, setIsMuted, onOpenQr }) {
                         title: theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode',
                         "aria-label": "Toggle theme",
                         children: theme === 'light' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$moon$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Moon$3e$__["Moon"], {
-                            size: 17
+                            size: 16
                         }, void 0, false, {
                             fileName: "[project]/app/components/Header.jsx",
-                            lineNumber: 69,
+                            lineNumber: 70,
                             columnNumber: 32
                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sun$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sun$3e$__["Sun"], {
-                            size: 17
+                            size: 16
                         }, void 0, false, {
                             fileName: "[project]/app/components/Header.jsx",
-                            lineNumber: 69,
+                            lineNumber: 70,
                             columnNumber: 53
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/components/Header.jsx",
-                        lineNumber: 63,
+                        lineNumber: 64,
                         columnNumber: 9
                     }, this)
                 ]
@@ -1400,6 +1432,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$laptop$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Laptop$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/laptop.mjs [app-client] (ecmascript) <export default as Laptop>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$pen$2d$line$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit3$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/pen-line.mjs [app-client] (ecmascript) <export default as Edit3>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/check.mjs [app-client] (ecmascript) <export default as Check>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/refresh-cw.mjs [app-client] (ecmascript) <export default as RefreshCw>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/app/utils/sound.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
@@ -1407,18 +1440,33 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-function PeersBar({ networkInfo, connectedDevices = [], deviceName, setDeviceName, onNameChange, isMuted, onOpenQr }) {
+function PeersBar({ networkInfo, connectedDevices = [], deviceName, setDeviceName, deviceType = 'desktop', wsStatus = 'connecting', onNameChange, isMuted, onOpenQr, onReconnect }) {
     _s();
     const [isEditing, setIsEditing] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [tempName, setTempName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(deviceName);
     const handleSaveName = ()=>{
-        if (tempName.trim()) {
-            setDeviceName(tempName.trim());
-            onNameChange(tempName.trim());
+        const name = tempName.trim();
+        if (name) {
+            setDeviceName(name);
+            onNameChange(name);
         }
         setIsEditing(false);
         (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["playTapSound"])(isMuted);
     };
+    const isConnected = wsStatus === 'connected';
+    const isConnecting = wsStatus === 'connecting';
+    const isDisconnected = wsStatus === 'disconnected';
+    // Count peers that are NOT self
+    const peers = connectedDevices.filter((d)=>!d.isSelf);
+    const totalCount = connectedDevices.length;
+    const statusText = (()=>{
+        if (isConnecting) return 'Connecting to local network…';
+        if (isDisconnected) return 'Disconnected — tap Retry to reconnect';
+        // Connected
+        if (peers.length === 0) return 'Just you on this network · Waiting for peers';
+        if (peers.length === 1) return `2 devices connected · 1 peer active`;
+        return `${totalCount} devices connected · ${peers.length} peers`;
+    })();
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "peers-strip glass-panel",
         children: [
@@ -1429,98 +1477,111 @@ function PeersBar({ networkInfo, connectedDevices = [], deviceName, setDeviceNam
                         className: "radar-ping-wrapper",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "radar-pulse"
+                                className: `radar-pulse status-${wsStatus}`
                             }, void 0, false, {
                                 fileName: "[project]/app/components/PeersBar.jsx",
-                                lineNumber: 32,
+                                lineNumber: 54,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "radar-core"
+                                className: `radar-core status-${wsStatus}`
                             }, void 0, false, {
                                 fileName: "[project]/app/components/PeersBar.jsx",
-                                lineNumber: 33,
+                                lineNumber: 55,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/PeersBar.jsx",
-                        lineNumber: 31,
+                        lineNumber: 53,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        style: {
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: '1px'
-                        },
+                        className: "radar-info",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                style: {
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.4rem',
-                                    fontSize: '0.86rem',
-                                    fontWeight: '700'
-                                },
+                                className: "radar-title-row",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "radar-title",
                                         children: "Local Network"
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/PeersBar.jsx",
-                                        lineNumber: 37,
+                                        lineNumber: 59,
                                         columnNumber: 13
                                     }, this),
                                     networkInfo?.localIp && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        style: {
-                                            fontSize: '0.75rem',
-                                            fontWeight: '500',
-                                            color: 'var(--text-muted)'
-                                        },
+                                        className: "radar-ip-tag",
                                         children: [
                                             "(",
                                             networkInfo.localIp,
                                             ":",
-                                            networkInfo.port,
+                                            networkInfo.port || 3000,
                                             ")"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/components/PeersBar.jsx",
-                                        lineNumber: 39,
+                                        lineNumber: 61,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/PeersBar.jsx",
-                                lineNumber: 36,
+                                lineNumber: 58,
                                 columnNumber: 11
                             }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                style: {
-                                    fontSize: '0.74rem',
-                                    color: 'var(--text-secondary)'
-                                },
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "radar-status-row",
                                 children: [
-                                    connectedDevices.length,
-                                    " active device",
-                                    connectedDevices.length !== 1 ? 's' : '',
-                                    " connected"
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: `radar-status-text${isConnecting ? ' status-connecting' : isDisconnected ? ' status-disconnected' : ''}`,
+                                        children: statusText
+                                    }, void 0, false, {
+                                        fileName: "[project]/app/components/PeersBar.jsx",
+                                        lineNumber: 67,
+                                        columnNumber: 13
+                                    }, this),
+                                    isDisconnected && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: onReconnect,
+                                        className: "radar-reconnect-btn",
+                                        title: "Reconnect to local network",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$refresh$2d$cw$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__RefreshCw$3e$__["RefreshCw"], {
+                                                size: 11
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/components/PeersBar.jsx",
+                                                lineNumber: 76,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                children: "Retry"
+                                            }, void 0, false, {
+                                                fileName: "[project]/app/components/PeersBar.jsx",
+                                                lineNumber: 77,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/components/PeersBar.jsx",
+                                        lineNumber: 71,
+                                        columnNumber: 15
+                                    }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/PeersBar.jsx",
-                                lineNumber: 44,
+                                lineNumber: 66,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/PeersBar.jsx",
-                        lineNumber: 35,
+                        lineNumber: 57,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/PeersBar.jsx",
-                lineNumber: 30,
+                lineNumber: 52,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1529,19 +1590,19 @@ function PeersBar({ networkInfo, connectedDevices = [], deviceName, setDeviceNam
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "device-badge self",
                         children: [
-                            deviceName.toLowerCase().includes('phone') || deviceName.toLowerCase().includes('mobile') || deviceName.toLowerCase().includes('iphone') || deviceName.toLowerCase().includes('android') ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$smartphone$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Smartphone$3e$__["Smartphone"], {
+                            deviceType === 'mobile' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$smartphone$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Smartphone$3e$__["Smartphone"], {
                                 size: 14,
                                 color: "var(--blip-blue)"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/PeersBar.jsx",
-                                lineNumber: 54,
+                                lineNumber: 89,
                                 columnNumber: 13
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$laptop$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Laptop$3e$__["Laptop"], {
                                 size: 14,
                                 color: "var(--blip-blue)"
                             }, void 0, false, {
                                 fileName: "[project]/app/components/PeersBar.jsx",
-                                lineNumber: 56,
+                                lineNumber: 91,
                                 columnNumber: 13
                             }, this),
                             isEditing ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1555,89 +1616,81 @@ function PeersBar({ networkInfo, connectedDevices = [], deviceName, setDeviceNam
                                         type: "text",
                                         value: tempName,
                                         onChange: (e)=>setTempName(e.target.value),
-                                        onKeyDown: (e)=>e.key === 'Enter' && handleSaveName(),
+                                        onKeyDown: (e)=>{
+                                            if (e.key === 'Enter') handleSaveName();
+                                            if (e.key === 'Escape') setIsEditing(false);
+                                        },
                                         autoFocus: true,
-                                        style: {
-                                            background: 'var(--bg-surface-elevated)',
-                                            border: '1px solid var(--blip-blue)',
-                                            borderRadius: '4px',
-                                            padding: '2px 6px',
-                                            fontSize: '0.8rem',
-                                            color: 'var(--text-primary)',
-                                            outline: 'none',
-                                            width: '100px'
-                                        }
+                                        className: "name-edit-input",
+                                        maxLength: 28
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/PeersBar.jsx",
-                                        lineNumber: 61,
+                                        lineNumber: 96,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: handleSaveName,
-                                        style: {
-                                            background: 'transparent',
-                                            border: 'none',
-                                            cursor: 'pointer',
-                                            color: 'var(--accent-success)',
-                                            display: 'flex',
-                                            alignItems: 'center'
-                                        },
+                                        className: "name-save-btn",
+                                        title: "Save name",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Check$3e$__["Check"], {
-                                            size: 14
+                                            size: 13
                                         }, void 0, false, {
                                             fileName: "[project]/app/components/PeersBar.jsx",
-                                            lineNumber: 89,
+                                            lineNumber: 113,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/PeersBar.jsx",
-                                        lineNumber: 78,
+                                        lineNumber: 108,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/PeersBar.jsx",
-                                lineNumber: 60,
+                                lineNumber: 95,
                                 columnNumber: 13
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 onClick: ()=>{
                                     setTempName(deviceName);
                                     setIsEditing(true);
                                 },
-                                title: "Click to rename your device",
-                                style: {
-                                    cursor: 'pointer',
-                                    display: 'inline-flex',
-                                    alignItems: 'center',
-                                    gap: '4px'
-                                },
+                                title: "Tap to rename this device",
+                                className: "name-display-wrap",
                                 children: [
-                                    deviceName,
-                                    " (You)",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        children: [
+                                            deviceName,
+                                            " (You)"
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/app/components/PeersBar.jsx",
+                                        lineNumber: 125,
+                                        columnNumber: 15
+                                    }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$pen$2d$line$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Edit3$3e$__["Edit3"], {
                                         size: 11,
                                         style: {
-                                            opacity: 0.6
+                                            opacity: 0.5
                                         }
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/PeersBar.jsx",
-                                        lineNumber: 102,
+                                        lineNumber: 126,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/components/PeersBar.jsx",
-                                lineNumber: 93,
+                                lineNumber: 117,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/components/PeersBar.jsx",
-                        lineNumber: 52,
+                        lineNumber: 87,
                         columnNumber: 9
                     }, this),
-                    connectedDevices.filter((d)=>!d.isSelf).map((peer)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "device-badge",
+                    peers.map((peer)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "device-badge peer",
                             title: `Connected since ${new Date(peer.joinedAt).toLocaleTimeString()}`,
                             children: [
                                 peer.type === 'mobile' ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$smartphone$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Smartphone$3e$__["Smartphone"], {
@@ -1645,60 +1698,51 @@ function PeersBar({ networkInfo, connectedDevices = [], deviceName, setDeviceNam
                                     color: "var(--blip-purple)"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/PeersBar.jsx",
-                                    lineNumber: 113,
-                                    columnNumber: 17
+                                    lineNumber: 139,
+                                    columnNumber: 15
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$laptop$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Laptop$3e$__["Laptop"], {
                                     size: 14,
                                     color: "var(--blip-purple)"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/PeersBar.jsx",
-                                    lineNumber: 115,
-                                    columnNumber: 17
+                                    lineNumber: 141,
+                                    columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: peer.name
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/PeersBar.jsx",
-                                    lineNumber: 117,
-                                    columnNumber: 15
+                                    lineNumber: 143,
+                                    columnNumber: 13
                                 }, this)
                             ]
                         }, peer.id, true, {
                             fileName: "[project]/app/components/PeersBar.jsx",
-                            lineNumber: 111,
-                            columnNumber: 13
+                            lineNumber: 133,
+                            columnNumber: 11
                         }, this)),
-                    connectedDevices.length <= 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                    peers.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         onClick: ()=>{
                             (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["playTapSound"])(isMuted);
                             onOpenQr();
                         },
-                        style: {
-                            background: 'transparent',
-                            border: '1px dashed var(--border-subtle)',
-                            borderRadius: 'var(--radius-full)',
-                            padding: '0.3rem 0.75rem',
-                            fontSize: '0.76rem',
-                            color: 'var(--blip-blue)',
-                            cursor: 'pointer',
-                            fontWeight: '600'
-                        },
+                        className: "pair-phone-pill",
                         children: "+ Pair Phone"
                     }, void 0, false, {
                         fileName: "[project]/app/components/PeersBar.jsx",
-                        lineNumber: 122,
+                        lineNumber: 149,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/components/PeersBar.jsx",
-                lineNumber: 50,
+                lineNumber: 85,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/components/PeersBar.jsx",
-        lineNumber: 29,
+        lineNumber: 50,
         columnNumber: 5
     }, this);
 }
@@ -1730,95 +1774,65 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js_
 function PreviewModal({ previewUrl, onClose, isMuted }) {
     if (!previewUrl) return null;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "modal-overlay",
+        className: "modal-overlay preview-overlay",
         onClick: onClose,
         style: {
             zIndex: 110
         },
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            style: {
-                position: 'relative',
-                maxWidth: '90vw',
-                maxHeight: '90vh',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '0.75rem'
-            },
+            className: "preview-container",
             onClick: (e)=>e.stopPropagation(),
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    style: {
-                        position: 'absolute',
-                        top: '-2.5rem',
-                        right: 0,
-                        display: 'flex',
-                        gap: '0.5rem'
-                    },
+                    className: "preview-top-bar",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                             href: previewUrl,
                             download: "slipshare-image",
-                            className: "icon-btn",
-                            style: {
-                                background: 'rgba(0,0,0,0.6)',
-                                color: '#fff',
-                                border: 'none'
-                            },
+                            className: "icon-btn preview-btn",
                             title: "Download image",
                             onClick: ()=>(0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["playTapSound"])(isMuted),
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$download$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Download$3e$__["Download"], {
                                 size: 18
                             }, void 0, false, {
                                 fileName: "[project]/app/components/PreviewModal.jsx",
-                                lineNumber: 41,
+                                lineNumber: 24,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/components/PreviewModal.jsx",
-                            lineNumber: 33,
+                            lineNumber: 17,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                            className: "icon-btn",
-                            style: {
-                                background: 'rgba(0,0,0,0.6)',
-                                color: '#fff',
-                                border: 'none'
-                            },
+                            className: "icon-btn preview-btn",
                             onClick: onClose,
                             title: "Close preview",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
                                 size: 18
                             }, void 0, false, {
                                 fileName: "[project]/app/components/PreviewModal.jsx",
-                                lineNumber: 49,
+                                lineNumber: 31,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/components/PreviewModal.jsx",
-                            lineNumber: 43,
+                            lineNumber: 26,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/PreviewModal.jsx",
-                    lineNumber: 24,
+                    lineNumber: 16,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
                     src: previewUrl,
                     alt: "Preview",
-                    style: {
-                        maxWidth: '100%',
-                        maxHeight: '82vh',
-                        borderRadius: '12px',
-                        objectFit: 'contain',
-                        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.7)'
-                    }
+                    className: "preview-image"
                 }, void 0, false, {
                     fileName: "[project]/app/components/PreviewModal.jsx",
-                    lineNumber: 53,
+                    lineNumber: 35,
                     columnNumber: 9
                 }, this)
             ]
@@ -1856,6 +1870,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$wifi$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Wifi$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/wifi.mjs [app-client] (ecmascript) <export default as Wifi>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$shield$2d$check$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ShieldCheck$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/shield-check.mjs [app-client] (ecmascript) <export default as ShieldCheck>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$smartphone$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Smartphone$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/smartphone.mjs [app-client] (ecmascript) <export default as Smartphone>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$qrcode$2f$lib$2f$browser$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/qrcode/lib/browser.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/app/utils/sound.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
@@ -1863,18 +1878,59 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+;
 function QrModal({ isOpen, onClose, networkInfo, isMuted, triggerToast }) {
     _s();
     const [copied, setCopied] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [clientQrUrl, setClientQrUrl] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
+    const [selectedIp, setSelectedIp] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
+    // Determine working connection URL
+    const determineConnectUrl = ()=>{
+        if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+        ;
+        const host = window.location.hostname;
+        // If accessing via domain or external IP (ngrok, custom domain, or direct IP)
+        if (host && host !== 'localhost' && host !== '127.0.0.1') {
+            return window.location.origin;
+        }
+        if (selectedIp) {
+            return `http://${selectedIp}:${networkInfo?.port || 3000}`;
+        }
+        return networkInfo?.connectUrl || window.location.origin;
+    };
+    const connectUrl = determineConnectUrl();
+    // Generate QR code dynamically for the exact connectUrl
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "QrModal.useEffect": ()=>{
+            if (!isOpen || !connectUrl) return;
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$qrcode$2f$lib$2f$browser$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].toDataURL(connectUrl, {
+                width: 320,
+                margin: 2,
+                color: {
+                    dark: '#0B0B0F',
+                    light: '#FFFFFF'
+                }
+            }).then({
+                "QrModal.useEffect": (url)=>setClientQrUrl(url)
+            }["QrModal.useEffect"]).catch({
+                "QrModal.useEffect": ()=>setClientQrUrl(networkInfo?.qrDataUrl || '')
+            }["QrModal.useEffect"]);
+        }
+    }["QrModal.useEffect"], [
+        isOpen,
+        connectUrl,
+        networkInfo?.qrDataUrl
+    ]);
     if (!isOpen) return null;
-    const connectUrl = networkInfo?.connectUrl || (("TURBOPACK compile-time truthy", 1) ? window.location.origin : "TURBOPACK unreachable");
     const handleCopyUrl = ()=>{
+        if (!connectUrl) return;
         navigator.clipboard.writeText(connectUrl);
         setCopied(true);
         (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["playTapSound"])(isMuted);
         triggerToast('Network URL copied to clipboard');
         setTimeout(()=>setCopied(false), 2000);
     };
+    const displayQr = clientQrUrl || networkInfo?.qrDataUrl;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "modal-overlay",
         onClick: onClose,
@@ -1907,12 +1963,12 @@ function QrModal({ isOpen, onClose, networkInfo, isMuted, triggerToast }) {
                                         size: 18
                                     }, void 0, false, {
                                         fileName: "[project]/app/components/QrModal.jsx",
-                                        lineNumber: 39,
+                                        lineNumber: 75,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/QrModal.jsx",
-                                    lineNumber: 27,
+                                    lineNumber: 63,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1920,13 +1976,13 @@ function QrModal({ isOpen, onClose, networkInfo, isMuted, triggerToast }) {
                                     children: "Pair Mobile Device"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/QrModal.jsx",
-                                    lineNumber: 41,
+                                    lineNumber: 77,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/components/QrModal.jsx",
-                            lineNumber: 26,
+                            lineNumber: 62,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1937,33 +1993,33 @@ function QrModal({ isOpen, onClose, networkInfo, isMuted, triggerToast }) {
                                 size: 17
                             }, void 0, false, {
                                 fileName: "[project]/app/components/QrModal.jsx",
-                                lineNumber: 44,
+                                lineNumber: 80,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/components/QrModal.jsx",
-                            lineNumber: 43,
+                            lineNumber: 79,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/QrModal.jsx",
-                    lineNumber: 25,
+                    lineNumber: 61,
                     columnNumber: 9
                 }, this),
-                networkInfo?.qrDataUrl ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                displayQr ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "qr-box-wrap",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
-                        src: networkInfo.qrDataUrl,
+                        src: displayQr,
                         alt: "Pairing QR Code"
                     }, void 0, false, {
                         fileName: "[project]/app/components/QrModal.jsx",
-                        lineNumber: 51,
+                        lineNumber: 87,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/components/QrModal.jsx",
-                    lineNumber: 50,
+                    lineNumber: 86,
                     columnNumber: 11
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     style: {
@@ -1981,23 +2037,70 @@ function QrModal({ isOpen, onClose, networkInfo, isMuted, triggerToast }) {
                             }
                         }, void 0, false, {
                             fileName: "[project]/app/components/QrModal.jsx",
-                            lineNumber: 62,
+                            lineNumber: 98,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                             style: {
                                 fontSize: '0.85rem'
                             },
-                            children: "Open the URL on your mobile browser"
+                            children: "Open the URL below on your mobile browser"
                         }, void 0, false, {
                             fileName: "[project]/app/components/QrModal.jsx",
-                            lineNumber: 63,
+                            lineNumber: 99,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/QrModal.jsx",
-                    lineNumber: 54,
+                    lineNumber: 90,
+                    columnNumber: 11
+                }, this),
+                networkInfo?.allIps && networkInfo.allIps.length > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    style: {
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.4rem',
+                        fontSize: '0.78rem',
+                        flexWrap: 'wrap'
+                    },
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            style: {
+                                color: 'var(--text-muted)'
+                            },
+                            children: "Network Adapter:"
+                        }, void 0, false, {
+                            fileName: "[project]/app/components/QrModal.jsx",
+                            lineNumber: 106,
+                            columnNumber: 13
+                        }, this),
+                        networkInfo.allIps.map((ip)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: ()=>setSelectedIp(ip.address),
+                                style: {
+                                    background: selectedIp === ip.address || !selectedIp && ip.address === networkInfo.localIp ? 'var(--blip-blue)' : 'var(--bg-subtle)',
+                                    color: selectedIp === ip.address || !selectedIp && ip.address === networkInfo.localIp ? '#fff' : 'var(--text-secondary)',
+                                    border: '1px solid var(--border-subtle)',
+                                    borderRadius: 'var(--radius-full)',
+                                    padding: '2px 8px',
+                                    fontSize: '0.74rem',
+                                    cursor: 'pointer'
+                                },
+                                children: [
+                                    ip.name,
+                                    " (",
+                                    ip.address,
+                                    ")"
+                                ]
+                            }, ip.address, true, {
+                                fileName: "[project]/app/components/QrModal.jsx",
+                                lineNumber: 108,
+                                columnNumber: 15
+                            }, this))
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/app/components/QrModal.jsx",
+                    lineNumber: 105,
                     columnNumber: 11
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2012,7 +2115,7 @@ function QrModal({ isOpen, onClose, networkInfo, isMuted, triggerToast }) {
                             children: connectUrl
                         }, void 0, false, {
                             fileName: "[project]/app/components/QrModal.jsx",
-                            lineNumber: 69,
+                            lineNumber: 129,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2031,24 +2134,24 @@ function QrModal({ isOpen, onClose, networkInfo, isMuted, triggerToast }) {
                                 size: 16
                             }, void 0, false, {
                                 fileName: "[project]/app/components/QrModal.jsx",
-                                lineNumber: 85,
+                                lineNumber: 145,
                                 columnNumber: 23
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$copy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Copy$3e$__["Copy"], {
                                 size: 16
                             }, void 0, false, {
                                 fileName: "[project]/app/components/QrModal.jsx",
-                                lineNumber: 85,
+                                lineNumber: 145,
                                 columnNumber: 45
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/components/QrModal.jsx",
-                            lineNumber: 72,
+                            lineNumber: 132,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/QrModal.jsx",
-                    lineNumber: 68,
+                    lineNumber: 128,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2072,20 +2175,20 @@ function QrModal({ isOpen, onClose, networkInfo, isMuted, triggerToast }) {
                                     color: "var(--blip-blue)"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/QrModal.jsx",
-                                    lineNumber: 92,
+                                    lineNumber: 152,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: "Connect your phone to the same Wi-Fi network"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/QrModal.jsx",
-                                    lineNumber: 93,
+                                    lineNumber: 153,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/components/QrModal.jsx",
-                            lineNumber: 91,
+                            lineNumber: 151,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2100,41 +2203,41 @@ function QrModal({ isOpen, onClose, networkInfo, isMuted, triggerToast }) {
                                     color: "var(--accent-success)"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/QrModal.jsx",
-                                    lineNumber: 96,
+                                    lineNumber: 156,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: "Zero cloud intermediary • Direct peer-to-peer Wi-Fi speed"
                                 }, void 0, false, {
                                     fileName: "[project]/app/components/QrModal.jsx",
-                                    lineNumber: 97,
+                                    lineNumber: 157,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/components/QrModal.jsx",
-                            lineNumber: 95,
+                            lineNumber: 155,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/components/QrModal.jsx",
-                    lineNumber: 90,
+                    lineNumber: 150,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/components/QrModal.jsx",
-            lineNumber: 24,
+            lineNumber: 60,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/components/QrModal.jsx",
-        lineNumber: 23,
+        lineNumber: 59,
         columnNumber: 5
     }, this);
 }
-_s(QrModal, "NE86rL3vg4NVcTTWDavsT0hUBJs=");
+_s(QrModal, "kLHuc72pGJhmocSTFXsOdfulEVM=");
 _c = QrModal;
 var _c;
 __turbopack_context__.k.register(_c, "QrModal");
@@ -2183,21 +2286,45 @@ function SlipShareApp() {
     const [showQrModal, setShowQrModal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [previewImage, setPreviewImage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [toastMessage, setToastMessage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
-    // Device Info
+    // Device Info & WS Status
     const [deviceName, setDeviceName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('My Device');
+    const [deviceType, setDeviceType] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('desktop');
+    const [wsStatus, setWsStatus] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('connecting');
     const wsRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     const toastTimeoutRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
-    // Initialize theme and device name on client mount
+    const reconnectTimeoutRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const isMountedRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(true);
+    // Ref for isMuted so WS onmessage closure always has current value
+    const isMutedRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(isMuted);
+    // Initialize theme and device detection on client mount
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "SlipShareApp.useEffect": ()=>{
+            isMountedRef.current = true;
             const savedTheme = localStorage.getItem('slip_theme') || 'light';
             setTheme(savedTheme);
             document.documentElement.setAttribute('data-theme', savedTheme);
             const savedMuted = localStorage.getItem('slip_muted') === 'true';
             setIsMuted(savedMuted);
-            const isMobile = /mobile|iphone|ipod|android|blackberry|opera mini|iemobile|wpdesktop/i.test(navigator.userAgent);
-            const savedDevice = localStorage.getItem('slip_device_name') || (isMobile ? 'Mobile Phone' : 'Laptop');
-            setDeviceName(savedDevice);
+            // Precise client-side device type detection
+            const isMobileDevice = /mobile|iphone|ipod|android|blackberry|opera mini|iemobile|wpdesktop/i.test(navigator.userAgent) || ("TURBOPACK compile-time value", "object") !== 'undefined' && window.innerWidth <= 768 && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+            setDeviceType(isMobileDevice ? 'mobile' : 'desktop');
+            const savedDevice = localStorage.getItem('slip_device_name');
+            if (savedDevice) {
+                setDeviceName(savedDevice);
+            } else {
+                if (/iphone/i.test(navigator.userAgent)) setDeviceName('iPhone');
+                else if (/ipad/i.test(navigator.userAgent)) setDeviceName('iPad');
+                else if (/android/i.test(navigator.userAgent)) setDeviceName('Android Phone');
+                else if (/macintosh/i.test(navigator.userAgent)) setDeviceName('MacBook');
+                else if (/windows/i.test(navigator.userAgent)) setDeviceName('Windows PC');
+                else if (/linux/i.test(navigator.userAgent)) setDeviceName('Linux Laptop');
+                else setDeviceName(isMobileDevice ? 'Mobile Phone' : 'Laptop');
+            }
+            return ({
+                "SlipShareApp.useEffect": ()=>{
+                    isMountedRef.current = false;
+                }
+            })["SlipShareApp.useEffect"];
         }
     }["SlipShareApp.useEffect"], []);
     // Sync theme
@@ -2213,6 +2340,7 @@ function SlipShareApp() {
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "SlipShareApp.useEffect": ()=>{
             localStorage.setItem('slip_muted', String(isMuted));
+            isMutedRef.current = isMuted;
         }
     }["SlipShareApp.useEffect"], [
         isMuted
@@ -2226,7 +2354,11 @@ function SlipShareApp() {
     // Fetch Network & QR information
     const fetchNetworkInfo = async ()=>{
         try {
-            const res = await fetch('/api/info');
+            const res = await fetch('/api/info', {
+                headers: {
+                    'ngrok-skip-browser-warning': 'true'
+                }
+            });
             if (res.ok) {
                 const data = await res.json();
                 setNetworkInfo(data);
@@ -2238,7 +2370,11 @@ function SlipShareApp() {
     // Fetch initial items
     const fetchItems = async ()=>{
         try {
-            const res = await fetch('/api/items');
+            const res = await fetch('/api/items', {
+                headers: {
+                    'ngrok-skip-browser-warning': 'true'
+                }
+            });
             if (res.ok) {
                 const data = await res.json();
                 if (data.items) {
@@ -2249,93 +2385,166 @@ function SlipShareApp() {
             console.warn('Items fetch error:', e);
         }
     };
+    const connectWebSocketRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
     // Setup WebSocket connection
+    const connectWebSocket = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "SlipShareApp.useCallback[connectWebSocket]": ()=>{
+            if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
+            ;
+            if (wsRef.current && (wsRef.current.readyState === WebSocket.OPEN || wsRef.current.readyState === WebSocket.CONNECTING)) {
+                return;
+            }
+            setWsStatus('connecting');
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsUrl = `${protocol}//${window.location.host}/ws`;
+            try {
+                const ws = new WebSocket(wsUrl);
+                wsRef.current = ws;
+                ws.onopen = ({
+                    "SlipShareApp.useCallback[connectWebSocket]": ()=>{
+                        if (!isMountedRef.current) return;
+                        setWsStatus('connected');
+                        const customName = localStorage.getItem('slip_device_name');
+                        if (customName) {
+                            ws.send(JSON.stringify({
+                                type: 'set_name',
+                                name: customName
+                            }));
+                        }
+                    }
+                })["SlipShareApp.useCallback[connectWebSocket]"];
+                ws.onmessage = ({
+                    "SlipShareApp.useCallback[connectWebSocket]": (event)=>{
+                        try {
+                            const data = JSON.parse(event.data);
+                            if (data.type === 'welcome') {
+                                if (data.items) setItems(data.items);
+                                if (!localStorage.getItem('slip_device_name') && data.clientName) {
+                                    setDeviceName(data.clientName);
+                                }
+                                if (data.clientType) {
+                                    setDeviceType(data.clientType);
+                                }
+                            } else if (data.type === 'devices_updated') {
+                                const devices = data.devices || [];
+                                setConnectedDevices(devices);
+                                const selfDev = devices.find({
+                                    "SlipShareApp.useCallback[connectWebSocket].selfDev": (d)=>d.isSelf
+                                }["SlipShareApp.useCallback[connectWebSocket].selfDev"]);
+                                if (selfDev) {
+                                    setDeviceType(selfDev.type);
+                                }
+                            } else if (data.type === 'item_received') {
+                                setItems({
+                                    "SlipShareApp.useCallback[connectWebSocket]": (prev)=>{
+                                        if (prev.some({
+                                            "SlipShareApp.useCallback[connectWebSocket]": (i)=>i.id === data.item.id
+                                        }["SlipShareApp.useCallback[connectWebSocket]"])) return prev;
+                                        return [
+                                            data.item,
+                                            ...prev
+                                        ];
+                                    }
+                                }["SlipShareApp.useCallback[connectWebSocket]"]);
+                                (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["playBlipSound"])(isMutedRef.current);
+                                triggerToast(`New ${data.item.type} from ${data.item.senderName}`);
+                            } else if (data.type === 'item_deleted') {
+                                setItems({
+                                    "SlipShareApp.useCallback[connectWebSocket]": (prev)=>prev.filter({
+                                            "SlipShareApp.useCallback[connectWebSocket]": (i)=>i.id !== data.itemId
+                                        }["SlipShareApp.useCallback[connectWebSocket]"])
+                                }["SlipShareApp.useCallback[connectWebSocket]"]);
+                            } else if (data.type === 'history_cleared') {
+                                setItems([]);
+                            } else if (data.type === 'server_ping') {
+                                if (ws.readyState === WebSocket.OPEN) {
+                                    ws.send(JSON.stringify({
+                                        type: 'client_pong'
+                                    }));
+                                }
+                            }
+                        } catch (err) {
+                            console.error('WS parse error:', err);
+                        }
+                    }
+                })["SlipShareApp.useCallback[connectWebSocket]"];
+                ws.onclose = ({
+                    "SlipShareApp.useCallback[connectWebSocket]": ()=>{
+                        if (!isMountedRef.current) return;
+                        setWsStatus('disconnected');
+                        if (reconnectTimeoutRef.current) clearTimeout(reconnectTimeoutRef.current);
+                        reconnectTimeoutRef.current = setTimeout({
+                            "SlipShareApp.useCallback[connectWebSocket]": ()=>{
+                                if (connectWebSocketRef.current) connectWebSocketRef.current();
+                            }
+                        }["SlipShareApp.useCallback[connectWebSocket]"], 2500);
+                    }
+                })["SlipShareApp.useCallback[connectWebSocket]"];
+                ws.onerror = ({
+                    "SlipShareApp.useCallback[connectWebSocket]": ()=>{
+                        ws.close();
+                    }
+                })["SlipShareApp.useCallback[connectWebSocket]"];
+            } catch (e) {
+                console.warn('WS creation error:', e);
+                setWsStatus('disconnected');
+            }
+        }
+    }["SlipShareApp.useCallback[connectWebSocket]"], [
+        isMuted
+    ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "SlipShareApp.useEffect": ()=>{
+            connectWebSocketRef.current = connectWebSocket;
+        }
+    }["SlipShareApp.useEffect"], [
+        connectWebSocket
+    ]);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "SlipShareApp.useEffect": ()=>{
             fetchNetworkInfo();
             fetchItems();
-            let isMounted = true;
-            let reconnectTimeout = null;
-            const connectWebSocket = {
-                "SlipShareApp.useEffect.connectWebSocket": ()=>{
-                    if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
-                    ;
-                    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-                    const wsUrl = `${protocol}//${window.location.host}/ws`;
-                    const ws = new WebSocket(wsUrl);
-                    wsRef.current = ws;
-                    ws.onopen = ({
-                        "SlipShareApp.useEffect.connectWebSocket": ()=>{
-                            const currentName = localStorage.getItem('slip_device_name') || deviceName;
-                            ws.send(JSON.stringify({
-                                type: 'set_name',
-                                name: currentName
-                            }));
-                        }
-                    })["SlipShareApp.useEffect.connectWebSocket"];
-                    ws.onmessage = ({
-                        "SlipShareApp.useEffect.connectWebSocket": (event)=>{
-                            try {
-                                const data = JSON.parse(event.data);
-                                if (data.type === 'welcome') {
-                                    if (data.items) setItems(data.items);
-                                } else if (data.type === 'devices_updated') {
-                                    setConnectedDevices(data.devices || []);
-                                } else if (data.type === 'item_received') {
-                                    setItems({
-                                        "SlipShareApp.useEffect.connectWebSocket": (prev)=>{
-                                            if (prev.some({
-                                                "SlipShareApp.useEffect.connectWebSocket": (i)=>i.id === data.item.id
-                                            }["SlipShareApp.useEffect.connectWebSocket"])) return prev;
-                                            return [
-                                                data.item,
-                                                ...prev
-                                            ];
-                                        }
-                                    }["SlipShareApp.useEffect.connectWebSocket"]);
-                                    (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["playBlipSound"])(isMuted);
-                                    triggerToast(`New ${data.item.type} from ${data.item.senderName}`);
-                                } else if (data.type === 'item_deleted') {
-                                    setItems({
-                                        "SlipShareApp.useEffect.connectWebSocket": (prev)=>prev.filter({
-                                                "SlipShareApp.useEffect.connectWebSocket": (i)=>i.id !== data.itemId
-                                            }["SlipShareApp.useEffect.connectWebSocket"])
-                                    }["SlipShareApp.useEffect.connectWebSocket"]);
-                                } else if (data.type === 'history_cleared') {
-                                    setItems([]);
-                                }
-                            } catch (err) {
-                                console.error('WS parse error:', err);
-                            }
-                        }
-                    })["SlipShareApp.useEffect.connectWebSocket"];
-                    ws.onclose = ({
-                        "SlipShareApp.useEffect.connectWebSocket": ()=>{
-                            if (isMounted) {
-                                reconnectTimeout = setTimeout(connectWebSocket, 3000);
-                            }
-                        }
-                    })["SlipShareApp.useEffect.connectWebSocket"];
-                    ws.onerror = ({
-                        "SlipShareApp.useEffect.connectWebSocket": ()=>{
-                            ws.close();
-                        }
-                    })["SlipShareApp.useEffect.connectWebSocket"];
-                }
-            }["SlipShareApp.useEffect.connectWebSocket"];
             connectWebSocket();
+            // Reconnect on tab visibility change (e.g. phone screen unlock)
+            const handleVisibilityChange = {
+                "SlipShareApp.useEffect.handleVisibilityChange": ()=>{
+                    if (document.visibilityState === 'visible') {
+                        if (!wsRef.current || wsRef.current.readyState !== WebSocket.OPEN) {
+                            connectWebSocket();
+                        }
+                        fetchNetworkInfo();
+                        fetchItems();
+                    }
+                }
+            }["SlipShareApp.useEffect.handleVisibilityChange"];
+            // Client-side ping to prevent Wi-Fi router / carrier TCP timeouts
+            const pingTimer = setInterval({
+                "SlipShareApp.useEffect.pingTimer": ()=>{
+                    if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+                        try {
+                            wsRef.current.send(JSON.stringify({
+                                type: 'ping'
+                            }));
+                        } catch  {
+                        // ignore
+                        }
+                    }
+                }
+            }["SlipShareApp.useEffect.pingTimer"], 15000);
+            document.addEventListener('visibilitychange', handleVisibilityChange);
             return ({
                 "SlipShareApp.useEffect": ()=>{
-                    isMounted = false;
-                    if (reconnectTimeout) clearTimeout(reconnectTimeout);
+                    document.removeEventListener('visibilitychange', handleVisibilityChange);
+                    clearInterval(pingTimer);
+                    if (reconnectTimeoutRef.current) clearTimeout(reconnectTimeoutRef.current);
                     if (wsRef.current) wsRef.current.close();
                 }
             })["SlipShareApp.useEffect"];
         }
     }["SlipShareApp.useEffect"], [
-        isMuted
+        connectWebSocket
     ]);
-    // Handle device nickname update
+    // Rename current device
     const handleDeviceNameChange = (newName)=>{
         setDeviceName(newName);
         localStorage.setItem('slip_device_name', newName);
@@ -2355,11 +2564,11 @@ function SlipShareApp() {
         for(let i = 0; i < files.length; i++){
             formData.append('files', files[i]);
         }
-        const isMobile = /mobile|iphone|ipod|android/i.test(navigator.userAgent);
         formData.append('senderName', deviceName);
-        formData.append('senderType', isMobile ? 'mobile' : 'desktop');
+        formData.append('senderType', deviceType);
         const xhr = new XMLHttpRequest();
         xhr.open('POST', '/api/upload');
+        xhr.setRequestHeader('ngrok-skip-browser-warning', 'true');
         xhr.upload.onprogress = (e)=>{
             if (e.lengthComputable) {
                 const percent = Math.round(e.loaded / e.total * 100);
@@ -2374,31 +2583,41 @@ function SlipShareApp() {
                 triggerToast(`${files.length} file${files.length > 1 ? 's' : ''} sent successfully`);
             } else {
                 (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["playFailSound"])(isMuted);
-                triggerToast('Upload failed, please retry');
+                let errorMsg = 'Upload failed, please retry';
+                try {
+                    const res = JSON.parse(xhr.responseText);
+                    if (res?.error) errorMsg = res.error;
+                } catch  {}
+                if (xhr.status === 413) {
+                    errorMsg = 'File too large for this network or tunnel';
+                }
+                console.error('Upload failed with status', xhr.status, xhr.responseText);
+                triggerToast(errorMsg);
             }
         };
         xhr.onerror = ()=>{
             setIsUploading(false);
             setUploadProgress(0);
             (0, __TURBOPACK__imported__module__$5b$project$5d2f$app$2f$utils$2f$sound$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["playFailSound"])(isMuted);
-            triggerToast('Upload failed, network error');
+            console.error('Upload failed with network error');
+            triggerToast('Upload failed: network connection error');
         };
         xhr.send(formData);
     };
     // Send Text Note
     const handleSendText = async (content)=>{
-        const isMobile = /mobile|iphone|ipod|android/i.test(navigator.userAgent);
         try {
             await fetch('/api/items', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'ngrok-skip-browser-warning': 'true'
                 },
                 body: JSON.stringify({
                     type: 'text',
                     content,
                     senderName: deviceName,
-                    senderType: isMobile ? 'mobile' : 'desktop'
+                    senderType: deviceType
                 })
             });
         } catch  {
@@ -2408,19 +2627,19 @@ function SlipShareApp() {
     };
     // Send Link
     const handleSendLink = async (url)=>{
-        const isMobile = /mobile|iphone|ipod|android/i.test(navigator.userAgent);
         try {
             await fetch('/api/items', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'ngrok-skip-browser-warning': 'true'
                 },
                 body: JSON.stringify({
                     type: 'link',
                     content: url,
                     title: url,
                     senderName: deviceName,
-                    senderType: isMobile ? 'mobile' : 'desktop'
+                    senderType: deviceType
                 })
             });
         } catch  {
@@ -2432,9 +2651,12 @@ function SlipShareApp() {
     const handleDeleteItem = async (id)=>{
         try {
             await fetch(`/api/items/${id}`, {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: {
+                    'ngrok-skip-browser-warning': 'true'
+                }
             });
-        } catch (e) {
+        } catch  {
             triggerToast('Failed to delete item');
         }
     };
@@ -2442,9 +2664,12 @@ function SlipShareApp() {
     const handleClearAll = async ()=>{
         try {
             await fetch('/api/items', {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: {
+                    'ngrok-skip-browser-warning': 'true'
+                }
             });
-        } catch (e) {
+        } catch  {
             triggerToast('Failed to clear history');
         }
     };
@@ -2459,7 +2684,7 @@ function SlipShareApp() {
                 onOpenQr: ()=>setShowQrModal(true)
             }, void 0, false, {
                 fileName: "[project]/app/page.jsx",
-                lineNumber: 279,
+                lineNumber: 391,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$PeersBar$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2467,12 +2692,15 @@ function SlipShareApp() {
                 connectedDevices: connectedDevices,
                 deviceName: deviceName,
                 setDeviceName: setDeviceName,
+                deviceType: deviceType,
+                wsStatus: wsStatus,
                 onNameChange: handleDeviceNameChange,
                 isMuted: isMuted,
-                onOpenQr: ()=>setShowQrModal(true)
+                onOpenQr: ()=>setShowQrModal(true),
+                onReconnect: connectWebSocket
             }, void 0, false, {
                 fileName: "[project]/app/page.jsx",
-                lineNumber: 288,
+                lineNumber: 400,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$Composer$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2487,7 +2715,7 @@ function SlipShareApp() {
                 triggerToast: triggerToast
             }, void 0, false, {
                 fileName: "[project]/app/page.jsx",
-                lineNumber: 299,
+                lineNumber: 414,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$ActivityFeed$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2499,7 +2727,7 @@ function SlipShareApp() {
                 triggerToast: triggerToast
             }, void 0, false, {
                 fileName: "[project]/app/page.jsx",
-                lineNumber: 312,
+                lineNumber: 427,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$QrModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2510,7 +2738,7 @@ function SlipShareApp() {
                 triggerToast: triggerToast
             }, void 0, false, {
                 fileName: "[project]/app/page.jsx",
-                lineNumber: 322,
+                lineNumber: 437,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$app$2f$components$2f$PreviewModal$2e$jsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -2519,7 +2747,7 @@ function SlipShareApp() {
                 isMuted: isMuted
             }, void 0, false, {
                 fileName: "[project]/app/page.jsx",
-                lineNumber: 331,
+                lineNumber: 446,
                 columnNumber: 7
             }, this),
             toastMessage && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2527,17 +2755,17 @@ function SlipShareApp() {
                 children: toastMessage
             }, void 0, false, {
                 fileName: "[project]/app/page.jsx",
-                lineNumber: 338,
+                lineNumber: 453,
                 columnNumber: 24
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/page.jsx",
-        lineNumber: 277,
+        lineNumber: 389,
         columnNumber: 5
     }, this);
 }
-_s(SlipShareApp, "ztZINQoFKi8h1UyCzDaMHbyfesc=");
+_s(SlipShareApp, "4W7gf4+/RAfv9rhFMpOrlz/9tJc=");
 _c = SlipShareApp;
 var _c;
 __turbopack_context__.k.register(_c, "SlipShareApp");

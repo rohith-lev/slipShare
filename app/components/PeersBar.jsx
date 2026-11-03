@@ -10,7 +10,7 @@ export default function PeersBar({
   deviceName,
   setDeviceName,
   deviceType = 'desktop',
-  wsStatus = 'connected',
+  wsStatus = 'connecting',
   onNameChange,
   isMuted,
   onOpenQr,
@@ -20,9 +20,10 @@ export default function PeersBar({
   const [tempName, setTempName] = useState(deviceName);
 
   const handleSaveName = () => {
-    if (tempName.trim()) {
-      setDeviceName(tempName.trim());
-      onNameChange(tempName.trim());
+    const name = tempName.trim();
+    if (name) {
+      setDeviceName(name);
+      onNameChange(name);
     }
     setIsEditing(false);
     playTapSound(isMuted);
@@ -32,8 +33,22 @@ export default function PeersBar({
   const isConnecting = wsStatus === 'connecting';
   const isDisconnected = wsStatus === 'disconnected';
 
+  // Count peers that are NOT self
+  const peers = connectedDevices.filter((d) => !d.isSelf);
+  const totalCount = connectedDevices.length;
+
+  const statusText = (() => {
+    if (isConnecting) return 'Connecting to local network…';
+    if (isDisconnected) return 'Disconnected — tap Retry to reconnect';
+    // Connected
+    if (peers.length === 0) return 'Just you on this network · Waiting for peers';
+    if (peers.length === 1) return `2 devices connected · 1 peer active`;
+    return `${totalCount} devices connected · ${peers.length} peers`;
+  })();
+
   return (
     <div className="peers-strip glass-panel">
+      {/* Left — network status indicator */}
       <div className="radar-indicator">
         <div className="radar-ping-wrapper">
           <div className={`radar-pulse status-${wsStatus}`} />
@@ -49,14 +64,8 @@ export default function PeersBar({
             )}
           </div>
           <div className="radar-status-row">
-            <span className={`radar-status-text status-${wsStatus}`}>
-              {isConnecting && 'Connecting to local network...'}
-              {isDisconnected && 'Disconnected • Reconnecting...'}
-              {isConnected && (
-                connectedDevices.length <= 1
-                  ? '1 device connected (You) • Ready for peers'
-                  : `${connectedDevices.length} active devices connected`
-              )}
+            <span className={`radar-status-text${isConnecting ? ' status-connecting' : isDisconnected ? ' status-disconnected' : ''}`}>
+              {statusText}
             </span>
             {isDisconnected && (
               <button
@@ -72,8 +81,9 @@ export default function PeersBar({
         </div>
       </div>
 
+      {/* Right — device list */}
       <div className="devices-list">
-        {/* Self device badge */}
+        {/* Self badge */}
         <div className="device-badge self">
           {deviceType === 'mobile' ? (
             <Smartphone size={14} color="var(--blip-blue)" />
@@ -87,9 +97,13 @@ export default function PeersBar({
                 type="text"
                 value={tempName}
                 onChange={(e) => setTempName(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && handleSaveName()}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') handleSaveName();
+                  if (e.key === 'Escape') setIsEditing(false);
+                }}
                 autoFocus
                 className="name-edit-input"
+                maxLength={28}
               />
               <button
                 onClick={handleSaveName}
@@ -105,34 +119,33 @@ export default function PeersBar({
                 setTempName(deviceName);
                 setIsEditing(true);
               }}
-              title="Click to rename your device"
+              title="Tap to rename this device"
               className="name-display-wrap"
             >
               <span>{deviceName} (You)</span>
-              <Edit3 size={11} style={{ opacity: 0.6 }} />
+              <Edit3 size={11} style={{ opacity: 0.5 }} />
             </span>
           )}
         </div>
 
-        {/* Other Peers on the Wi-Fi */}
-        {connectedDevices
-          .filter((d) => !d.isSelf)
-          .map((peer) => (
-            <div
-              key={peer.id}
-              className="device-badge peer"
-              title={`Connected since ${new Date(peer.joinedAt).toLocaleTimeString()}`}
-            >
-              {peer.type === 'mobile' ? (
-                <Smartphone size={14} color="var(--blip-purple)" />
-              ) : (
-                <Laptop size={14} color="var(--blip-purple)" />
-              )}
-              <span>{peer.name}</span>
-            </div>
-          ))}
+        {/* Peer badges */}
+        {peers.map((peer) => (
+          <div
+            key={peer.id}
+            className="device-badge peer"
+            title={`Connected since ${new Date(peer.joinedAt).toLocaleTimeString()}`}
+          >
+            {peer.type === 'mobile' ? (
+              <Smartphone size={14} color="var(--blip-purple)" />
+            ) : (
+              <Laptop size={14} color="var(--blip-purple)" />
+            )}
+            <span>{peer.name}</span>
+          </div>
+        ))}
 
-        {connectedDevices.length <= 1 && (
+        {/* Pair button when no peers yet */}
+        {peers.length === 0 && (
           <button
             onClick={() => {
               playTapSound(isMuted);
